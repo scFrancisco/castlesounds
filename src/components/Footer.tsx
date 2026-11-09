@@ -57,7 +57,7 @@ export default function Footer() {
 
         <div className="mt-10 pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="font-['Space_Grotesk'] text-xs text-[#6b6b8a]">
-            © {new Date().getFullYear()} CastleSounds. All rights reserved.
+            © 2025 CastleSounds. All rights reserved.
           </p>
           <p className="font-['Space_Grotesk'] text-xs text-[#6b6b8a]">
             <a href="mailto:booking@castlesounds.pt" className="hover:text-[#b06dff] transition-colors">

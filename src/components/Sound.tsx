@@ -58,9 +58,9 @@ export default function Sound() {
           </div>
 
           {/* Animated waveform */}
-          <div className="flex items-end gap-0.5 h-16 mb-4">
+          <div className="flex items-end gap-0.5 h-16 mb-4" suppressHydrationWarning>
             {Array.from({ length: 80 }).map((_, i) => {
-              const h = 20 + Math.sin(i * 0.4) * 15 + Math.sin(i * 0.15) * 20 + (i % 7 === 0 ? 15 : 0);
+              const h = Math.round(20 + Math.sin(i * 0.4) * 15 + Math.sin(i * 0.15) * 20 + (i % 7 === 0 ? 15 : 0));
               const active = i < 32;
               return (
                 <div
@@ -70,8 +70,8 @@ export default function Sound() {
                     height: `${h}%`,
                     minHeight: "4px",
                     background: active
-                      ? `rgba(0,229,255,${0.5 + (h / 50) * 0.5})`
-                      : `rgba(107,107,138,${0.2 + (h / 80) * 0.3})`,
+                      ? `rgba(0,229,255,${(0.5 + (h / 50) * 0.5).toFixed(2)})`
+                      : `rgba(107,107,138,${(0.2 + (h / 80) * 0.3).toFixed(2)})`,
                   }}
                 />
               );
