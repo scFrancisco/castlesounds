@@ -98,13 +98,6 @@ export default function Footer() {
                 {iconSvgs[s.icon] ?? <span className="font-['Cinzel'] text-[9px]">{s.icon}</span>}
               </motion.a>
             ))}
-            <motion.a
-              href="/admin"
-              whileHover={{ scale: 1.05 }}
-              className="ml-2 px-3 py-1.5 glass border border-[#EDE8DF]/8 hover:border-[#C9922A]/30 rounded-lg font-['Space_Grotesk'] text-[9px] tracking-widest text-[#5A5550] hover:text-[#C9922A] transition-all"
-            >
-              ADMIN
-            </motion.a>
           </div>
         </div>
 
