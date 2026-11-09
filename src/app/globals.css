@@ -1,73 +1,70 @@
 @import "tailwindcss";
 
 @theme {
-  /* Castle palette — gold, teal, crimson */
-  --color-cs-black:   #080806;
-  --color-cs-dark:    #0f0e0b;
-  --color-cs-gold:    #C9922A;
-  --color-cs-gold-lt: #E4B55A;
-  --color-cs-teal:    #4E8FA0;
-  --color-cs-crimson: #9B1C1C;
-  --color-cs-parchment: #EDE8DF;
-  --color-cs-muted:   #5A5550;
-
+  --color-cs-bg:      #09090B;
+  --color-cs-surface: #111115;
+  --color-cs-gold:    #C8A050;
+  --color-cs-gold-lt: #DDB96A;
+  --color-cs-steel:   #5698AA;
+  --color-cs-cream:   #EEE8DF;
+  --color-cs-muted:   #726E6A;
   --font-display: "Cinzel", serif;
   --font-body:    "Space Grotesk", sans-serif;
 }
 
 * { box-sizing: border-box; }
-
 html { scroll-behavior: smooth; }
 
 body {
-  background-color: #080806;
-  color: #EDE8DF;
+  background-color: #09090B;
+  color: #EEE8DF;
   overflow-x: hidden;
 }
 
-/* Scrollbar */
-::-webkit-scrollbar { width: 3px; }
-::-webkit-scrollbar-track { background: #080806; }
-::-webkit-scrollbar-thumb { background: #C9922A; border-radius: 2px; }
+::-webkit-scrollbar { width: 2px; }
+::-webkit-scrollbar-track { background: #09090B; }
+::-webkit-scrollbar-thumb { background: #C8A050; border-radius: 2px; }
 
-/* Glass */
+/* Glass — no backdrop-filter, solid translucent for performance */
 .glass {
-  background: rgba(255, 248, 230, 0.03);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(201, 146, 42, 0.1);
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(238, 232, 223, 0.06);
 }
 
-/* Neon glows — gold and teal */
+/* Blur glass — only for navbar */
+.glass-nav {
+  background: rgba(9, 9, 11, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* Glows */
 .glow-gold {
-  text-shadow: 0 0 12px rgba(201,146,42,0.9), 0 0 50px rgba(201,146,42,0.4);
-}
-.glow-teal {
-  text-shadow: 0 0 12px rgba(78,143,160,0.9), 0 0 50px rgba(78,143,160,0.4);
-}
-.glow-crimson {
-  text-shadow: 0 0 12px rgba(155,28,28,0.9), 0 0 50px rgba(155,28,28,0.4);
+  text-shadow: 0 0 60px rgba(200, 160, 80, 0.45);
 }
 
 .shadow-gold {
-  box-shadow: 0 0 24px rgba(201,146,42,0.4), 0 0 60px rgba(201,146,42,0.15);
-}
-.shadow-teal {
-  box-shadow: 0 0 24px rgba(78,143,160,0.4), 0 0 60px rgba(78,143,160,0.1);
+  box-shadow: 0 4px 20px rgba(200, 160, 80, 0.22), 0 0 60px rgba(200, 160, 80, 0.07);
 }
 
-/* Grid — subtle warm stone texture */
+/* Subtle grid */
 .grid-bg {
   background-image:
-    linear-gradient(rgba(201,146,42,0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(201,146,42,0.025) 1px, transparent 1px);
-  background-size: 60px 60px;
+    linear-gradient(rgba(200, 160, 80, 0.016) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(200, 160, 80, 0.016) 1px, transparent 1px);
+  background-size: 80px 80px;
 }
 
 /* Ambient orbs */
 .orb {
   border-radius: 50%;
-  filter: blur(90px);
+  filter: blur(80px);
   position: absolute;
   pointer-events: none;
+}
+
+/* Skip off-screen rendering for perf */
+#about, #sound, #events, #booking {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 600px;
 }

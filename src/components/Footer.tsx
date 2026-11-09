@@ -56,16 +56,16 @@ export default function Footer() {
   const activeSocials = socials.filter((s) => s.active);
 
   return (
-    <footer className="relative py-16 border-t border-[#C9922A]/8 overflow-hidden">
-      <div className="orb w-[300px] h-[200px] bg-[#C9922A]/5 bottom-0 left-1/2 -translate-x-1/2" />
+    <footer className="relative py-16 border-t border-[#C8A050]/8 overflow-hidden">
+      <div className="orb w-[300px] h-[200px] bg-[#C8A050]/5 bottom-0 left-1/2 -translate-x-1/2" />
 
       <div className="max-w-6xl mx-auto px-6 relative z-10">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
           <div>
-            <p className="font-['Cinzel'] font-black text-2xl tracking-[0.15em] glow-gold text-[#C9922A]">
-              CASTLE<span className="text-[#EDE8DF]">SOUNDS</span>
+            <p className="font-['Cinzel'] font-black text-2xl tracking-[0.15em] glow-gold text-[#C8A050]">
+              CASTLE<span className="text-[#EEE8DF]">SOUNDS</span>
             </p>
-            <p className="font-['Space_Grotesk'] text-xs text-[#5A5550] mt-1 tracking-widest">
+            <p className="font-['Space_Grotesk'] text-xs text-[#726E6A] mt-1 tracking-widest">
               DJ & PRODUCER · {artist.location.toUpperCase()}
             </p>
           </div>
@@ -75,7 +75,7 @@ export default function Footer() {
               <a
                 key={l}
                 href={`#${l.toLowerCase()}`}
-                className="font-['Space_Grotesk'] text-[10px] tracking-[0.2em] text-[#5A5550] hover:text-[#C9922A] transition-colors"
+                className="font-['Space_Grotesk'] text-[10px] tracking-[0.2em] text-[#726E6A] hover:text-[#C8A050] transition-colors"
               >
                 {l}
               </a>
@@ -93,7 +93,7 @@ export default function Footer() {
                 whileTap={{ scale: 0.95 }}
                 aria-label={s.label}
                 title={s.label}
-                className="w-9 h-9 glass border border-[#EDE8DF]/8 rounded-lg flex items-center justify-center text-[#5A5550] hover:text-[#C9922A] transition-colors duration-200"
+                className="w-9 h-9 glass border border-[#EEE8DF]/8 rounded-lg flex items-center justify-center text-[#726E6A] hover:text-[#C8A050] transition-colors duration-200"
               >
                 {iconSvgs[s.icon] ?? <span className="font-['Cinzel'] text-[9px]">{s.icon}</span>}
               </motion.a>
@@ -101,10 +101,10 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-10 pt-6 border-t border-[#EDE8DF]/5 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="font-['Space_Grotesk'] text-xs text-[#5A5550]">© 2025 CastleSounds. All rights reserved.</p>
-          <p className="font-['Space_Grotesk'] text-xs text-[#5A5550]">
-            <a href={`mailto:${artist.bookingEmail}`} className="hover:text-[#C9922A] transition-colors">
+        <div className="mt-10 pt-6 border-t border-[#EEE8DF]/5 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p className="font-['Space_Grotesk'] text-xs text-[#726E6A]">© 2025 CastleSounds. All rights reserved.</p>
+          <p className="font-['Space_Grotesk'] text-xs text-[#726E6A]">
+            <a href={`mailto:${artist.bookingEmail}`} className="hover:text-[#C8A050] transition-colors">
               {artist.bookingEmail}
             </a>
           </p>

@@ -51,7 +51,7 @@ export default function Booking() {
 
   return (
     <section id="booking" className="relative py-32 overflow-hidden" ref={ref}>
-      <div className="orb w-[500px] h-[500px] bg-[#C9922A]/8 top-0 left-1/2 -translate-x-1/2" />
+      <div className="orb w-[500px] h-[500px] bg-[#C8A050]/8 top-0 left-1/2 -translate-x-1/2" />
 
       <div className="max-w-3xl mx-auto px-6 relative z-10">
         <motion.div
@@ -59,13 +59,13 @@ export default function Booking() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           className="text-center mb-14"
         >
-          <span className="font-['Space_Grotesk'] text-xs tracking-[0.4em] text-[#C9922A] uppercase mb-4 block">
+          <span className="font-['Space_Grotesk'] text-xs tracking-[0.4em] text-[#C8A050] uppercase mb-4 block">
             Book Castle
           </span>
-          <h2 className="font-['Cinzel'] font-bold text-4xl md:text-5xl text-[#EDE8DF] mb-4">
-            LET&apos;S <span className="glow-gold text-[#C9922A]">CREATE</span>
+          <h2 className="font-['Cinzel'] font-bold text-4xl md:text-5xl text-[#EEE8DF] mb-4">
+            LET&apos;S <span className="glow-gold text-[#C8A050]">CREATE</span>
           </h2>
-          <p className="font-['Space_Grotesk'] text-[#5A5550] max-w-sm mx-auto">
+          <p className="font-['Space_Grotesk'] text-[#726E6A] max-w-sm mx-auto">
             Fill out the form and expect a reply within 24 hours.
           </p>
         </motion.div>
@@ -74,7 +74,7 @@ export default function Booking() {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.2 }}
-          className="glass border border-[#C9922A]/10 rounded-2xl p-8 md:p-10"
+          className="glass border border-[#C8A050]/10 rounded-2xl p-8 md:p-10"
         >
           {status === "success" ? (
             <motion.div
@@ -82,18 +82,18 @@ export default function Booking() {
               animate={{ opacity: 1, scale: 1 }}
               className="text-center py-16"
             >
-              <div className="w-16 h-16 rounded-full border-2 border-[#C9922A] flex items-center justify-center mx-auto mb-6 shadow-gold">
+              <div className="w-16 h-16 rounded-full border-2 border-[#C8A050] flex items-center justify-center mx-auto mb-6 shadow-gold">
                 <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-                  <path d="M5 14L11 20L23 8" stroke="#C9922A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M5 14L11 20L23 8" stroke="#C8A050" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </div>
-              <h3 className="font-['Cinzel'] font-bold text-2xl text-[#EDE8DF] mb-3">Message Sent!</h3>
-              <p className="font-['Space_Grotesk'] text-[#5A5550] mb-8">
+              <h3 className="font-['Cinzel'] font-bold text-2xl text-[#EEE8DF] mb-3">Message Sent!</h3>
+              <p className="font-['Space_Grotesk'] text-[#726E6A] mb-8">
                 Thanks for reaching out. Castle will get back to you within 24 hours.
               </p>
               <button
                 onClick={() => setStatus("idle")}
-                className="px-6 py-3 glass border border-[#C9922A]/30 text-[#C9922A] text-sm font-['Space_Grotesk'] tracking-[0.1em] hover:bg-[#C9922A]/10 transition-all rounded-sm"
+                className="px-6 py-3 glass border border-[#C8A050]/30 text-[#C8A050] text-sm font-['Space_Grotesk'] tracking-[0.1em] hover:bg-[#C8A050]/10 transition-all rounded-sm"
               >
                 SEND ANOTHER
               </button>
@@ -147,7 +147,7 @@ export default function Booking() {
               </Field>
 
               {status === "error" && (
-                <p className="text-sm font-['Space_Grotesk'] text-[#9B1C1C] text-center">
+                <p className="text-sm font-['Space_Grotesk'] text-[#C8A050] text-center">
                   Something went wrong. Email directly at info@castledj.com
                 </p>
               )}
@@ -155,11 +155,11 @@ export default function Booking() {
               <button
                 type="submit"
                 disabled={status === "sending"}
-                className="w-full py-4 bg-[#C9922A] hover:bg-[#E4B55A] disabled:bg-[#C9922A]/40 text-[#080806] font-['Space_Grotesk'] font-semibold text-sm tracking-[0.2em] transition-all duration-300 hover:shadow-gold rounded-sm flex items-center justify-center gap-2"
+                className="w-full py-4 bg-[#C8A050] hover:bg-[#DDB96A] disabled:bg-[#C8A050]/40 text-[#09090B] font-['Space_Grotesk'] font-semibold text-sm tracking-[0.2em] transition-all duration-300 hover:shadow-gold rounded-sm flex items-center justify-center gap-2"
               >
                 {status === "sending" ? (
                   <>
-                    <span className="w-4 h-4 border-2 border-[#080806]/30 border-t-[#080806] rounded-full animate-spin" />
+                    <span className="w-4 h-4 border-2 border-[#09090B]/30 border-t-[#09090B] rounded-full animate-spin" />
                     SENDING…
                   </>
                 ) : "SEND BOOKING REQUEST"}
@@ -174,9 +174,9 @@ export default function Booking() {
           transition={{ delay: 0.5 }}
           className="text-center mt-8"
         >
-          <p className="font-['Space_Grotesk'] text-xs text-[#5A5550]">
+          <p className="font-['Space_Grotesk'] text-xs text-[#726E6A]">
             Prefer direct contact?{" "}
-            <a href={`mailto:${config.artist.bookingEmail}`} className="text-[#C9922A] hover:underline">
+            <a href={`mailto:${config.artist.bookingEmail}`} className="text-[#C8A050] hover:underline">
               {config.artist.bookingEmail}
             </a>
           </p>
@@ -189,15 +189,15 @@ export default function Booking() {
 function Field({ label, error, children }: { label: string; error?: string; children: React.ReactNode }) {
   return (
     <div className="flex flex-col gap-1.5">
-      <label className="font-['Space_Grotesk'] text-[10px] tracking-[0.25em] text-[#5A5550]">{label}</label>
+      <label className="font-['Space_Grotesk'] text-[10px] tracking-[0.25em] text-[#726E6A]">{label}</label>
       {children}
-      {error && <span className="font-['Space_Grotesk'] text-xs text-[#9B1C1C]">{error}</span>}
+      {error && <span className="font-['Space_Grotesk'] text-xs text-[#C8A050]">{error}</span>}
     </div>
   );
 }
 
 const inputClass =
-  "bg-[#EDE8DF]/[0.03] border border-[#EDE8DF]/8 hover:border-[#EDE8DF]/15 focus:border-[#C9922A]/50 focus:outline-none focus:ring-1 focus:ring-[#C9922A]/20 rounded-lg px-4 py-3 text-sm font-['Space_Grotesk'] text-[#EDE8DF] placeholder-[#5A5550] transition-all duration-200 w-full";
+  "bg-[#EEE8DF]/[0.03] border border-[#EEE8DF]/8 hover:border-[#EEE8DF]/15 focus:border-[#C8A050]/50 focus:outline-none focus:ring-1 focus:ring-[#C8A050]/20 rounded-lg px-4 py-3 text-sm font-['Space_Grotesk'] text-[#EEE8DF] placeholder-[#726E6A] transition-all duration-200 w-full";
 
 const selectClass =
-  "bg-[#0f0e0b] border border-[#EDE8DF]/8 hover:border-[#EDE8DF]/15 focus:border-[#C9922A]/50 focus:outline-none focus:ring-1 focus:ring-[#C9922A]/20 rounded-lg px-4 py-3 text-sm font-['Space_Grotesk'] text-[#EDE8DF] transition-all duration-200 w-full";
+  "bg-[#111115] border border-[#EEE8DF]/8 hover:border-[#EEE8DF]/15 focus:border-[#C8A050]/50 focus:outline-none focus:ring-1 focus:ring-[#C8A050]/20 rounded-lg px-4 py-3 text-sm font-['Space_Grotesk'] text-[#EEE8DF] transition-all duration-200 w-full";

@@ -86,10 +86,10 @@ export const defaultConfig: SiteConfig = {
     { id: "t4", title: "Late Night Session", duration: "52:00", bpm: "MIXED", genre: "DEEP HOUSE", href: null },
   ],
   events: [
-    { id: "e1", date: "NOV 22", year: "2025", venue: "Bunker Club", city: "Leiria", name: "UNDERGROUND SESSIONS #12", type: "RESIDENT SET", color: "#C9922A" },
-    { id: "e2", date: "DEC 07", year: "2025", venue: "Lux Frágil", city: "Lisboa", name: "DARK MATTER NIGHT", type: "HEADLINER", color: "#4E8FA0" },
-    { id: "e3", date: "DEC 28", year: "2025", venue: "Plano B", city: "Porto", name: "NEW YEAR'S COUNTDOWN", type: "SPECIAL EVENT", color: "#9B1C1C" },
-    { id: "e4", date: "JAN 11", year: "2026", venue: "Industrialx", city: "Coimbra", name: "CASTLE B2B NIGHT", type: "BACK-TO-BACK", color: "#C9922A" },
+    { id: "e1", date: "NOV 22", year: "2025", venue: "Bunker Club", city: "Leiria", name: "UNDERGROUND SESSIONS #12", type: "RESIDENT SET", color: "#C8A050" },
+    { id: "e2", date: "DEC 07", year: "2025", venue: "Lux Frágil", city: "Lisboa", name: "DARK MATTER NIGHT", type: "HEADLINER", color: "#5698AA" },
+    { id: "e3", date: "DEC 28", year: "2025", venue: "Plano B", city: "Porto", name: "NEW YEAR'S COUNTDOWN", type: "SPECIAL EVENT", color: "#C8A050" },
+    { id: "e4", date: "JAN 11", year: "2026", venue: "Industrialx", city: "Coimbra", name: "CASTLE B2B NIGHT", type: "BACK-TO-BACK", color: "#C8A050" },
   ],
   gallery: [
     { id: "g1", src: "", alt: "Live Set", span: "normal" },

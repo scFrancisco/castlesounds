@@ -19,11 +19,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Space+Grotesk:wght@300;400;500;600&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Space+Grotesk:wght@400;500;600&display=swap"
           rel="stylesheet"
         />
       </head>
-      <body className="bg-[#080810] text-[#e0e0f0] overflow-x-hidden">
+      <body className="bg-[#09090B] text-[#EEE8DF] overflow-x-hidden">
         <SiteConfigProvider>{children}</SiteConfigProvider>
       </body>
     </html>
