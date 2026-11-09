@@ -1,0 +1,82 @@
+@import "tailwindcss";
+
+@theme {
+  --color-cs-black: #080810;
+  --color-cs-dark: #0d0d1a;
+  --color-cs-neon: #b06dff;
+  --color-cs-cyan: #00e5ff;
+  --color-cs-pink: #ff2d78;
+  --color-cs-muted: #6b6b8a;
+
+  --font-display: "Orbitron", sans-serif;
+  --font-body: "Space Grotesk", sans-serif;
+
+  --shadow-neon: 0 0 20px rgba(176, 109, 255, 0.4), 0 0 60px rgba(176, 109, 255, 0.15);
+  --shadow-neon-cyan: 0 0 20px rgba(0, 229, 255, 0.4), 0 0 60px rgba(0, 229, 255, 0.1);
+  --shadow-neon-pink: 0 0 20px rgba(255, 45, 120, 0.4), 0 0 60px rgba(255, 45, 120, 0.1);
+
+  --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-float: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Grotesk:wght@300;400;500;600&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #080810;
+  color: #e0e0f0;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #080810; }
+::-webkit-scrollbar-thumb { background: #b06dff; border-radius: 2px; }
+
+.glass {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.neon-text {
+  text-shadow: 0 0 10px rgba(176, 109, 255, 0.8), 0 0 40px rgba(176, 109, 255, 0.4);
+}
+
+.neon-text-cyan {
+  text-shadow: 0 0 10px rgba(0, 229, 255, 0.8), 0 0 40px rgba(0, 229, 255, 0.4);
+}
+
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(176, 109, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(176, 109, 255, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+.orb {
+  border-radius: 50%;
+  filter: blur(80px);
+  position: absolute;
+  pointer-events: none;
+}
+
+.shadow-neon {
+  box-shadow: 0 0 20px rgba(176, 109, 255, 0.4), 0 0 60px rgba(176, 109, 255, 0.15);
+}
+
+.shadow-neon-cyan {
+  box-shadow: 0 0 20px rgba(0, 229, 255, 0.4), 0 0 60px rgba(0, 229, 255, 0.1);
+}
