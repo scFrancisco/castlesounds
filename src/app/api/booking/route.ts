@@ -58,7 +58,7 @@ export async function POST(req: NextRequest) {
 
     await transporter.sendMail({
       from: `"CastleSounds Booking" <${process.env.SMTP_USER}>`,
-      to: process.env.BOOKING_EMAIL || process.env.SMTP_USER,
+      to: process.env.BOOKING_EMAIL || "info@castledj.com",
       replyTo: email,
       subject: `🎵 Booking Request: ${eventType} on ${eventDate} — ${name}`,
       html,

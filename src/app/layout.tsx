@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { SiteConfigProvider } from "@/context/SiteConfigContext";
 
 export const metadata: Metadata = {
-  title: "CASTLESOUNDS — DJ Leiria, Portugal",
-  description: "Underground electronic music, events & bookings. Based in Leiria, Portugal.",
+  title: "Castle — DJ & Producer, Leiria",
+  description: "House music DJ & Producer based in Leiria, Portugal. Bookings: info@castledj.com",
   openGraph: {
-    title: "CASTLESOUNDS",
-    description: "Underground electronic music, events & bookings. Based in Leiria, Portugal.",
+    title: "Castle — CastleSounds",
+    description: "House music DJ & Producer based in Leiria, Portugal.",
     type: "website",
   },
 };
@@ -18,12 +19,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Grotesk:wght@300;400;500;600&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Space+Grotesk:wght@300;400;500;600&display=swap"
           rel="stylesheet"
         />
       </head>
       <body className="bg-[#080810] text-[#e0e0f0] overflow-x-hidden">
-        {children}
+        <SiteConfigProvider>{children}</SiteConfigProvider>
       </body>
     </html>
   );
