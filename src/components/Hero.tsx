@@ -9,16 +9,29 @@ export default function Hero() {
   const ref = useRef<HTMLElement>(null);
 
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
+  const videoY = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.65], [1, 0]);
 
   return (
     <section ref={ref} className="relative min-h-screen flex items-center justify-center overflow-hidden grid-bg">
-      {/* Two ambient orbs — reduced from 3 */}
-      <motion.div style={{ y }} className="absolute inset-0 pointer-events-none">
-        <div className="orb w-[560px] h-[560px] bg-[#C8A050]/9 top-[-120px] right-[-160px]" />
-        <div className="orb w-[380px] h-[380px] bg-[#C8A050]/6 bottom-[-80px] left-[-100px]" />
+      {/* Video background */}
+      <motion.div style={{ y: videoY }} className="absolute inset-0 pointer-events-none">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover opacity-30"
+          src="/castle-mask-loop.mp4"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#060608]/60 via-[#060608]/20 to-[#060608]/80" />
       </motion.div>
+
+      {/* Ambient orbs over the video */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="orb w-[500px] h-[500px] bg-[#C41E3A]/12 top-[-80px] right-[-120px]" />
+        <div className="orb w-[300px] h-[300px] bg-[#00E5D0]/8 bottom-[-40px] left-[-80px]" />
+      </div>
 
       <motion.div style={{ opacity }} className="relative z-10 text-center px-6 max-w-5xl mx-auto w-full">
         {/* Location eyebrow */}
@@ -28,11 +41,11 @@ export default function Hero() {
           transition={{ delay: 0.1, duration: 0.45 }}
           className="inline-flex items-center gap-3 mb-10"
         >
-          <span className="w-1 h-1 rounded-full bg-[#C8A050]/60" />
-          <span className="font-['Space_Grotesk'] text-xs tracking-[0.4em] text-[#C8A050]/65 uppercase">
+          <span className="w-1 h-1 rounded-full bg-[#C41E3A]/70" />
+          <span className="font-['Space_Grotesk'] text-xs tracking-[0.4em] text-[#00E5D0]/70 uppercase">
             {artist.location}
           </span>
-          <span className="w-1 h-1 rounded-full bg-[#C8A050]/60" />
+          <span className="w-1 h-1 rounded-full bg-[#C41E3A]/70" />
         </motion.div>
 
         {/* Main title */}
@@ -41,7 +54,7 @@ export default function Hero() {
             initial={{ y: 80, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.18, duration: 0.72, ease: [0.16, 1, 0.3, 1] }}
-            className="font-['Cinzel'] font-black text-[clamp(4rem,14vw,11rem)] leading-none tracking-tight glow-gold text-[#C8A050]"
+            className="font-['Bebas_Neue'] text-[clamp(5rem,18vw,14rem)] leading-none tracking-widest glow-red text-[#C41E3A]"
           >
             CASTLE
           </motion.h1>
@@ -51,7 +64,7 @@ export default function Hero() {
             initial={{ y: 80, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.72, ease: [0.16, 1, 0.3, 1] }}
-            className="font-['Cinzel'] font-black text-[clamp(4rem,14vw,11rem)] leading-none tracking-tight text-[#EEE8DF]"
+            className="font-['Bebas_Neue'] text-[clamp(5rem,18vw,14rem)] leading-none tracking-widest text-[#F0ECEA]"
           >
             SOUNDS
           </motion.div>
@@ -62,7 +75,7 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.55, duration: 0.5 }}
-          className="font-['Space_Grotesk'] font-light text-[#726E6A] text-sm tracking-[0.5em] uppercase mb-12"
+          className="font-['Space_Grotesk'] font-light text-[#5A5460] text-sm tracking-[0.5em] uppercase mb-12"
         >
           {artist.tagline}
         </motion.p>
@@ -78,14 +91,14 @@ export default function Hero() {
             href={featuredTrack.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex items-center gap-2.5 px-7 py-3.5 bg-[#C8A050] hover:bg-[#DDB96A] text-[#09090B] font-['Space_Grotesk'] font-semibold text-xs tracking-[0.15em] transition-all duration-200 hover:shadow-gold rounded-sm w-full sm:w-auto justify-center min-h-[44px]"
+            className="group flex items-center gap-2.5 px-7 py-3.5 bg-[#C41E3A] hover:bg-[#E0304E] text-[#F0ECEA] font-['Space_Grotesk'] font-semibold text-xs tracking-[0.15em] transition-all duration-200 hover:shadow-red rounded-sm w-full sm:w-auto justify-center min-h-[44px]"
           >
             <PlayIcon />
             LISTEN TO {featuredTrack.title}
           </a>
           <a
             href="#booking"
-            className="px-7 py-3.5 border border-[#EEE8DF]/10 hover:border-[#C8A050]/40 hover:text-[#C8A050] font-['Space_Grotesk'] font-medium text-xs tracking-[0.15em] text-[#726E6A] transition-all duration-200 rounded-sm w-full sm:w-auto text-center min-h-[44px] flex items-center justify-center"
+            className="px-7 py-3.5 border border-[#F0ECEA]/10 hover:border-[#00E5D0]/40 hover:text-[#00E5D0] font-['Space_Grotesk'] font-medium text-xs tracking-[0.15em] text-[#5A5460] transition-all duration-200 rounded-sm w-full sm:w-auto text-center min-h-[44px] flex items-center justify-center"
           >
             BOOK AN EVENT
           </a>
@@ -101,7 +114,7 @@ export default function Hero() {
           <motion.div
             animate={{ y: [0, 10, 0] }}
             transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
-            className="w-px h-10 bg-gradient-to-b from-[#C8A050]/50 to-transparent"
+            className="w-px h-10 bg-gradient-to-b from-[#C41E3A]/50 to-transparent"
           />
         </motion.div>
       </motion.div>

@@ -34,7 +34,7 @@ export default function AdminAbout() {
       </Section>
 
       <Section title="Artist Photo">
-        <p className="font-['Space_Grotesk'] text-xs text-[#726E6A] mb-3">
+        <p className="font-['Space_Grotesk'] text-xs text-[#5A5460] mb-3">
           Paste an image URL, or use a base64 data URI for uploaded images.
         </p>
         <Field label="PHOTO URL">
@@ -46,13 +46,13 @@ export default function AdminAbout() {
           />
         </Field>
         {form.photo && (
-          <div className="mt-3 w-32 h-36 rounded-xl overflow-hidden border border-[#C8A050]/20">
+          <div className="mt-3 w-32 h-36 rounded-xl overflow-hidden border border-[#C41E3A]/20">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={form.photo} alt="Preview" className="w-full h-full object-cover" />
           </div>
         )}
         <div className="mt-3">
-          <label className="font-['Space_Grotesk'] text-[10px] tracking-[0.25em] text-[#726E6A] block mb-2">
+          <label className="font-['Space_Grotesk'] text-[10px] tracking-[0.25em] text-[#5A5460] block mb-2">
             OR UPLOAD FROM COMPUTER
           </label>
           <input
@@ -67,7 +67,7 @@ export default function AdminAbout() {
               };
               reader.readAsDataURL(file);
             }}
-            className="font-['Space_Grotesk'] text-xs text-[#726E6A] file:mr-3 file:py-1.5 file:px-4 file:rounded-sm file:border-0 file:bg-[#C8A050]/20 file:text-[#C8A050] file:font-['Space_Grotesk'] file:text-xs file:tracking-widest hover:file:bg-[#C8A050]/30 file:cursor-pointer"
+            className="font-['Space_Grotesk'] text-xs text-[#5A5460] file:mr-3 file:py-1.5 file:px-4 file:rounded-sm file:border-0 file:bg-[#C41E3A]/20 file:text-[#C41E3A] file:font-['Space_Grotesk'] file:text-xs file:tracking-widest hover:file:bg-[#C41E3A]/30 file:cursor-pointer"
           />
         </div>
       </Section>
@@ -84,7 +84,7 @@ export default function AdminAbout() {
       <Section title="Stats">
         <div className="grid sm:grid-cols-3 gap-4">
           {stats.map((s, i) => (
-            <div key={s.id} className="glass border border-[#EEE8DF]/5 rounded-xl p-4 space-y-3">
+            <div key={s.id} className="glass border border-[#F0ECEA]/5 rounded-xl p-4 space-y-3">
               <Field label="VALUE">
                 <input
                   value={s.value}
@@ -120,7 +120,7 @@ export default function AdminAbout() {
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div>
-      <h3 className="font-['Cinzel'] font-semibold text-[#C8A050] text-sm tracking-widest mb-4 pb-2 border-b border-[#C8A050]/15">
+      <h3 className="font-['Bebas_Neue'] font-semibold text-[#C41E3A] text-sm tracking-widest mb-4 pb-2 border-b border-[#C41E3A]/15">
         {title}
       </h3>
       <div className="space-y-4">{children}</div>
@@ -131,7 +131,7 @@ function Section({ title, children }: { title: string; children: React.ReactNode
 export function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div className="flex flex-col gap-1.5">
-      <label className="font-['Space_Grotesk'] text-[10px] tracking-[0.25em] text-[#726E6A]">{label}</label>
+      <label className="font-['Space_Grotesk'] text-[10px] tracking-[0.25em] text-[#5A5460]">{label}</label>
       {children}
     </div>
   );
@@ -139,14 +139,14 @@ export function Field({ label, children }: { label: string; children: React.Reac
 
 export function SaveBar({ saved, onSave }: { saved: boolean; onSave: () => void }) {
   return (
-    <div className="flex items-center justify-between pt-4 border-t border-[#EEE8DF]/5">
+    <div className="flex items-center justify-between pt-4 border-t border-[#F0ECEA]/5">
       {saved && (
-        <span className="font-['Space_Grotesk'] text-xs text-[#5698AA]">✓ Saved to browser storage</span>
+        <span className="font-['Space_Grotesk'] text-xs text-[#00E5D0]">✓ Saved to browser storage</span>
       )}
       <div className="ml-auto">
         <button
           onClick={onSave}
-          className="px-8 py-3 bg-[#C8A050] hover:bg-[#DDB96A] text-[#09090B] font-['Space_Grotesk'] font-semibold text-sm tracking-[0.15em] transition-all rounded-sm"
+          className="px-8 py-3 bg-[#C41E3A] hover:bg-[#E0304E] text-[#060608] font-['Space_Grotesk'] font-semibold text-sm tracking-[0.15em] transition-all rounded-sm"
         >
           SAVE CHANGES
         </button>
@@ -156,4 +156,4 @@ export function SaveBar({ saved, onSave }: { saved: boolean; onSave: () => void 
 }
 
 export const iClass =
-  "bg-[#EEE8DF]/[0.03] border border-[#EEE8DF]/8 hover:border-[#EEE8DF]/15 focus:border-[#C8A050]/50 focus:outline-none focus:ring-1 focus:ring-[#C8A050]/20 rounded-lg px-4 py-2.5 text-sm font-['Space_Grotesk'] text-[#EEE8DF] placeholder-[#726E6A] transition-all w-full";
+  "bg-[#F0ECEA]/[0.03] border border-[#F0ECEA]/8 hover:border-[#F0ECEA]/15 focus:border-[#C41E3A]/50 focus:outline-none focus:ring-1 focus:ring-[#C41E3A]/20 rounded-lg px-4 py-2.5 text-sm font-['Space_Grotesk'] text-[#F0ECEA] placeholder-[#5A5460] transition-all w-full";

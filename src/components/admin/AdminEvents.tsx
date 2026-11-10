@@ -4,7 +4,7 @@ import { useSiteConfig } from "@/context/SiteConfigContext";
 import { Event } from "@/data/siteConfig";
 import { Field, SaveBar, iClass } from "./AdminAbout";
 
-const colorPresets = ["#C8A050", "#5698AA", "#C8A050", "#EEE8DF", "#6B6B4A"];
+const colorPresets = ["#C41E3A", "#00E5D0", "#C41E3A", "#F0ECEA", "#6B6B4A"];
 
 function newEvent(): Event {
   return {
@@ -15,7 +15,7 @@ function newEvent(): Event {
     city: "",
     name: "",
     type: "RESIDENT SET",
-    color: "#C8A050",
+    color: "#C41E3A",
   };
 }
 
@@ -40,30 +40,30 @@ export default function AdminEvents() {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between mb-2">
-        <p className="font-['Space_Grotesk'] text-xs text-[#726E6A]">
+        <p className="font-['Space_Grotesk'] text-xs text-[#5A5460]">
           {events.length} event{events.length !== 1 ? "s" : ""}
         </p>
         <button
           onClick={add}
-          className="px-4 py-2 glass border border-[#C8A050]/30 text-[#C8A050] text-xs font-['Space_Grotesk'] tracking-[0.1em] hover:bg-[#C8A050]/10 transition-all rounded-sm"
+          className="px-4 py-2 glass border border-[#C41E3A]/30 text-[#C41E3A] text-xs font-['Space_Grotesk'] tracking-[0.1em] hover:bg-[#C41E3A]/10 transition-all rounded-sm"
         >
           + ADD EVENT
         </button>
       </div>
 
       {events.length === 0 && (
-        <div className="glass border border-[#EEE8DF]/5 rounded-2xl p-10 text-center">
-          <p className="font-['Space_Grotesk'] text-sm text-[#726E6A]">No events yet. Click Add Event to start.</p>
+        <div className="glass border border-[#F0ECEA]/5 rounded-2xl p-10 text-center">
+          <p className="font-['Space_Grotesk'] text-sm text-[#5A5460]">No events yet. Click Add Event to start.</p>
         </div>
       )}
 
       {events.map((event, i) => (
-        <div key={event.id} className="glass border border-[#EEE8DF]/5 hover:border-[#C8A050]/15 rounded-2xl p-6 transition-all">
+        <div key={event.id} className="glass border border-[#F0ECEA]/5 hover:border-[#C41E3A]/15 rounded-2xl p-6 transition-all">
           <div className="flex items-center justify-between mb-5">
-            <span className="font-['Cinzel'] text-xs text-[#C8A050] tracking-widest">EVENT {i + 1}</span>
+            <span className="font-['Bebas_Neue'] text-xs text-[#C41E3A] tracking-widest">EVENT {i + 1}</span>
             <button
               onClick={() => remove(event.id)}
-              className="text-xs font-['Space_Grotesk'] text-[#C8A050] hover:text-[#ff4444] transition-colors"
+              className="text-xs font-['Space_Grotesk'] text-[#C41E3A] hover:text-[#ff4444] transition-colors"
             >
               REMOVE
             </button>
@@ -89,7 +89,7 @@ export default function AdminEvents() {
             </Field>
           </div>
           <div className="mt-4">
-            <label className="font-['Space_Grotesk'] text-[10px] tracking-[0.25em] text-[#726E6A] block mb-2">ACCENT COLOR</label>
+            <label className="font-['Space_Grotesk'] text-[10px] tracking-[0.25em] text-[#5A5460] block mb-2">ACCENT COLOR</label>
             <div className="flex items-center gap-3">
               {colorPresets.map((c) => (
                 <button
@@ -98,7 +98,7 @@ export default function AdminEvents() {
                   className="w-7 h-7 rounded-full border-2 transition-all"
                   style={{
                     background: c,
-                    borderColor: event.color === c ? "#EEE8DF" : "transparent",
+                    borderColor: event.color === c ? "#F0ECEA" : "transparent",
                   }}
                   title={c}
                 />
@@ -107,9 +107,9 @@ export default function AdminEvents() {
                 type="color"
                 value={event.color}
                 onChange={(e) => update(event.id, { color: e.target.value })}
-                className="w-8 h-8 rounded-full border border-[#EEE8DF]/20 cursor-pointer bg-transparent"
+                className="w-8 h-8 rounded-full border border-[#F0ECEA]/20 cursor-pointer bg-transparent"
               />
-              <span className="font-['Space_Grotesk'] text-xs text-[#726E6A]">{event.color}</span>
+              <span className="font-['Space_Grotesk'] text-xs text-[#5A5460]">{event.color}</span>
             </div>
           </div>
         </div>

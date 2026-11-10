@@ -1,14 +1,15 @@
 @import "tailwindcss";
 
 @theme {
-  --color-cs-bg:      #09090B;
-  --color-cs-surface: #111115;
-  --color-cs-gold:    #C8A050;
-  --color-cs-gold-lt: #DDB96A;
-  --color-cs-steel:   #5698AA;
-  --color-cs-cream:   #EEE8DF;
-  --color-cs-muted:   #726E6A;
-  --font-display: "Cinzel", serif;
+  --color-cs-bg:       #060608;
+  --color-cs-surface:  #0D0B10;
+  --color-cs-red:      #C41E3A;
+  --color-cs-red-lt:   #E0304E;
+  --color-cs-cyan:     #00E5D0;
+  --color-cs-cyan-dk:  #00B8A6;
+  --color-cs-cream:    #F0ECEA;
+  --color-cs-muted:    #5A5460;
+  --font-display: "Bebas Neue", sans-serif;
   --font-body:    "Space Grotesk", sans-serif;
 }
 
@@ -16,49 +17,53 @@
 html { scroll-behavior: smooth; }
 
 body {
-  background-color: #09090B;
-  color: #EEE8DF;
+  background-color: #060608;
+  color: #F0ECEA;
   overflow-x: hidden;
 }
 
 ::-webkit-scrollbar { width: 2px; }
-::-webkit-scrollbar-track { background: #09090B; }
-::-webkit-scrollbar-thumb { background: #C8A050; border-radius: 2px; }
+::-webkit-scrollbar-track { background: #060608; }
+::-webkit-scrollbar-thumb { background: #C41E3A; border-radius: 2px; }
 
-/* Glass — no backdrop-filter, solid translucent for performance */
+/* Glass — no backdrop-filter for performance */
 .glass {
-  background: rgba(255, 255, 255, 0.025);
-  border: 1px solid rgba(238, 232, 223, 0.06);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(240, 236, 234, 0.06);
 }
 
 /* Blur glass — only for navbar */
 .glass-nav {
-  background: rgba(9, 9, 11, 0.88);
+  background: rgba(6, 6, 8, 0.90);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
 }
 
 /* Glows */
-.glow-gold {
-  text-shadow: 0 0 60px rgba(200, 160, 80, 0.45);
+.glow-red {
+  text-shadow: 0 0 60px rgba(196, 30, 58, 0.5);
 }
 
-.shadow-gold {
-  box-shadow: 0 4px 20px rgba(200, 160, 80, 0.22), 0 0 60px rgba(200, 160, 80, 0.07);
+.glow-cyan {
+  text-shadow: 0 0 40px rgba(0, 229, 208, 0.5);
 }
 
-/* Subtle grid */
+.shadow-red {
+  box-shadow: 0 4px 24px rgba(196, 30, 58, 0.3), 0 0 60px rgba(196, 30, 58, 0.1);
+}
+
+/* Subtle red grid */
 .grid-bg {
   background-image:
-    linear-gradient(rgba(200, 160, 80, 0.016) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(200, 160, 80, 0.016) 1px, transparent 1px);
+    linear-gradient(rgba(196, 30, 58, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(196, 30, 58, 0.018) 1px, transparent 1px);
   background-size: 80px 80px;
 }
 
 /* Ambient orbs */
 .orb {
   border-radius: 50%;
-  filter: blur(80px);
+  filter: blur(90px);
   position: absolute;
   pointer-events: none;
 }

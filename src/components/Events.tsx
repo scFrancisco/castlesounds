@@ -11,7 +11,7 @@ export default function Events() {
 
   return (
     <section id="events" className="relative py-28 overflow-hidden" ref={ref}>
-      <div className="orb w-[320px] h-[320px] bg-[#C8A050]/7 top-10 right-0" />
+      <div className="orb w-[320px] h-[320px] bg-[#C41E3A]/7 top-10 right-0" />
 
       <div className="max-w-6xl mx-auto px-6">
         {/* Header */}
@@ -19,7 +19,7 @@ export default function Events() {
           <motion.span
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : {}}
-            className="font-['Space_Grotesk'] text-xs tracking-[0.4em] text-[#C8A050] uppercase mb-4 block"
+            className="font-['Space_Grotesk'] text-xs tracking-[0.4em] text-[#C41E3A] uppercase mb-4 block"
           >
             Live Dates & Gallery
           </motion.span>
@@ -28,9 +28,9 @@ export default function Events() {
               initial={{ y: 50 }}
               animate={isInView ? { y: 0 } : {}}
               transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-              className="font-['Cinzel'] font-bold text-[clamp(2rem,5vw,3.25rem)] text-[#EEE8DF]"
+              className="font-['Bebas_Neue'] text-[clamp(2rem,5vw,3.25rem)] text-[#F0ECEA]"
             >
-              UPCOMING <span className="text-[#C8A050] glow-gold">EVENTS</span>
+              UPCOMING <span className="text-[#C41E3A] glow-red">EVENTS</span>
             </motion.h2>
           </div>
         </div>
@@ -39,9 +39,9 @@ export default function Events() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : {}}
-            className="glass border border-[#C8A050]/10 rounded-2xl p-10 text-center mb-20"
+            className="glass border border-[#C41E3A]/10 rounded-2xl p-10 text-center mb-20"
           >
-            <p className="font-['Space_Grotesk'] text-[#726E6A] text-sm">
+            <p className="font-['Space_Grotesk'] text-[#5A5460] text-sm">
               No upcoming events — add them in the Admin panel.
             </p>
           </motion.div>
@@ -53,16 +53,16 @@ export default function Events() {
                 initial={{ opacity: 0, x: -20 }}
                 animate={isInView ? { opacity: 1, x: 0 } : {}}
                 transition={{ delay: 0.08 + i * 0.08, ease: "easeOut" }}
-                className="group glass border border-[#EEE8DF]/5 hover:border-[#EEE8DF]/10 rounded-2xl px-6 py-5 flex flex-col sm:flex-row sm:items-center gap-4 transition-all duration-200"
+                className="group glass border border-[#F0ECEA]/5 hover:border-[#F0ECEA]/10 rounded-2xl px-6 py-5 flex flex-col sm:flex-row sm:items-center gap-4 transition-all duration-200"
               >
                 <div className="flex-shrink-0 text-center sm:w-20">
-                  <p className="font-['Cinzel'] font-bold text-2xl" style={{ color: event.color }}>{event.date}</p>
-                  <p className="font-['Space_Grotesk'] text-xs text-[#726E6A]">{event.year}</p>
+                  <p className="font-['Bebas_Neue'] text-2xl" style={{ color: event.color }}>{event.date}</p>
+                  <p className="font-['Space_Grotesk'] text-xs text-[#5A5460]">{event.year}</p>
                 </div>
-                <div className="w-px h-10 bg-[#EEE8DF]/7 hidden sm:block" />
+                <div className="w-px h-10 bg-[#F0ECEA]/7 hidden sm:block" />
                 <div className="flex-1 min-w-0">
-                  <p className="font-['Cinzel'] font-semibold text-[#EEE8DF] text-sm">{event.name}</p>
-                  <p className="font-['Space_Grotesk'] text-xs text-[#726E6A] mt-1">
+                  <p className="font-['Bebas_Neue'] text-[#F0ECEA] text-sm">{event.name}</p>
+                  <p className="font-['Space_Grotesk'] text-xs text-[#5A5460] mt-1">
                     {event.venue} · {event.city}
                   </p>
                 </div>
@@ -74,7 +74,7 @@ export default function Events() {
                 </div>
                 <a
                   href="#booking"
-                  className="self-start sm:self-center px-5 py-2 glass border border-[#EEE8DF]/8 hover:border-[#C8A050]/30 text-xs font-['Space_Grotesk'] tracking-[0.1em] transition-all duration-200 rounded-sm text-[#726E6A] hover:text-[#C8A050] min-h-[40px] flex items-center"
+                  className="self-start sm:self-center px-5 py-2 glass border border-[#F0ECEA]/8 hover:border-[#C41E3A]/30 text-xs font-['Space_Grotesk'] tracking-[0.1em] transition-all duration-200 rounded-sm text-[#5A5460] hover:text-[#C41E3A] min-h-[40px] flex items-center"
                 >
                   INQUIRE
                 </a>
@@ -89,8 +89,8 @@ export default function Events() {
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ delay: 0.3 }}
         >
-          <h3 className="font-['Cinzel'] font-bold text-lg text-[#EEE8DF] mb-6 text-center tracking-wider">
-            PHOTO <span className="text-[#726E6A]">GALLERY</span>
+          <h3 className="font-['Bebas_Neue'] text-lg text-[#F0ECEA] mb-6 text-center tracking-wider">
+            PHOTO <span className="text-[#5A5460]">GALLERY</span>
           </h3>
 
           <div className="grid grid-cols-2 md:grid-cols-3 gap-2.5">
@@ -112,30 +112,30 @@ export default function Events() {
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       loading="lazy"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#09090B]/55 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    <p className="absolute bottom-3 left-3 font-['Space_Grotesk'] text-xs text-[#EEE8DF] opacity-0 group-hover:opacity-100 transition-opacity duration-300 tracking-widest">
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#060608]/55 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <p className="absolute bottom-3 left-3 font-['Space_Grotesk'] text-xs text-[#F0ECEA] opacity-0 group-hover:opacity-100 transition-opacity duration-300 tracking-widest">
                       {item.alt}
                     </p>
                   </>
                 ) : (
-                  <div className="w-full h-full glass border border-[#C8A050]/7 flex items-center justify-center">
-                    <div className="absolute inset-0 bg-gradient-to-br from-[#C8A050]/4 to-[#5698AA]/4 group-hover:from-[#C8A050]/10 group-hover:to-[#5698AA]/8 transition-all duration-400" />
+                  <div className="w-full h-full glass border border-[#C41E3A]/7 flex items-center justify-center">
+                    <div className="absolute inset-0 bg-gradient-to-br from-[#C41E3A]/4 to-[#00E5D0]/4 group-hover:from-[#C41E3A]/10 group-hover:to-[#00E5D0]/8 transition-all duration-400" />
                     <div className="relative text-center px-4">
                       <svg width="32" height="32" viewBox="0 0 32 32" fill="none" className="mx-auto opacity-15 mb-2">
-                        <rect x="2" y="6" width="28" height="20" rx="3" stroke="#C8A050" strokeWidth="1.5"/>
-                        <circle cx="11" cy="13" r="2.5" stroke="#C8A050" strokeWidth="1.5"/>
-                        <path d="M2 22L10 15L15 20L22 13L30 22" stroke="#C8A050" strokeWidth="1.5" strokeLinejoin="round"/>
+                        <rect x="2" y="6" width="28" height="20" rx="3" stroke="#C41E3A" strokeWidth="1.5"/>
+                        <circle cx="11" cy="13" r="2.5" stroke="#C41E3A" strokeWidth="1.5"/>
+                        <path d="M2 22L10 15L15 20L22 13L30 22" stroke="#C41E3A" strokeWidth="1.5" strokeLinejoin="round"/>
                       </svg>
-                      <p className="font-['Space_Grotesk'] text-[9px] tracking-widest text-[#726E6A]">{item.alt}</p>
+                      <p className="font-['Space_Grotesk'] text-[9px] tracking-widest text-[#5A5460]">{item.alt}</p>
                     </div>
                   </div>
                 )}
               </motion.div>
             ))}
           </div>
-          <p className="text-center font-['Space_Grotesk'] text-xs text-[#726E6A] mt-4">
+          <p className="text-center font-['Space_Grotesk'] text-xs text-[#5A5460] mt-4">
             Manage photos and events in the{" "}
-            <a href="/admin" className="text-[#C8A050] hover:underline">Admin Panel</a>
+            <a href="/admin" className="text-[#C41E3A] hover:underline">Admin Panel</a>
           </p>
         </motion.div>
       </div>

@@ -12,7 +12,7 @@ function AnimatedCounter({ value }: { value: string }) {
       initial={{ opacity: 0, y: 8 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.4 }}
-      className="font-['Cinzel'] font-bold text-2xl text-[#C8A050]"
+      className="font-['Bebas_Neue'] text-2xl text-[#C41E3A]"
     >
       {value}
     </motion.span>
@@ -27,7 +27,7 @@ export default function About() {
 
   return (
     <section id="about" className="relative py-28 overflow-hidden" ref={ref}>
-      <div className="orb w-[400px] h-[400px] bg-[#C8A050]/7 top-0 right-[-120px]" />
+      <div className="orb w-[400px] h-[400px] bg-[#C41E3A]/7 top-0 right-[-120px]" />
 
       <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
         {/* Visual */}
@@ -38,36 +38,36 @@ export default function About() {
           className="relative flex justify-center"
         >
           <div className="relative max-w-sm w-full">
-            <div className="absolute inset-[-10px] rounded-2xl border border-[#C8A050]/12" />
+            <div className="absolute inset-[-10px] rounded-2xl border border-[#C41E3A]/12" />
             <div
-              className="relative rounded-2xl overflow-hidden border border-[#C8A050]/18"
+              className="relative rounded-2xl overflow-hidden border border-[#C41E3A]/18"
               style={{ aspectRatio: "480/520" }}
             >
               {artist.photo ? (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img src={artist.photo} alt={artist.name} className="w-full h-full object-cover" loading="lazy" />
               ) : (
-                <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-[#C8A050]/6 to-[#5698AA]/4">
+                <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-[#C41E3A]/6 to-[#00E5D0]/4">
                   <svg viewBox="0 0 120 140" fill="none" className="w-32 h-36 opacity-25 mb-4">
-                    <path d="M60 10 L110 35 L110 130 L10 130 L10 35 Z" stroke="#C8A050" strokeWidth="1.5"/>
-                    <path d="M38 130 L38 80 Q60 55 82 80 L82 130" stroke="#C8A050" strokeWidth="1.5"/>
-                    <rect x="18" y="8" width="14" height="20" stroke="#C8A050" strokeWidth="1.2"/>
-                    <rect x="53" y="4" width="14" height="16" stroke="#C8A050" strokeWidth="1.2"/>
-                    <rect x="88" y="8" width="14" height="20" stroke="#C8A050" strokeWidth="1.2"/>
-                    <circle cx="60" cy="90" r="10" stroke="#C8A050" strokeWidth="1.2"/>
-                    <line x1="10" y1="50" x2="110" y2="50" stroke="#C8A050" strokeWidth="0.5" strokeDasharray="3 3"/>
+                    <path d="M60 10 L110 35 L110 130 L10 130 L10 35 Z" stroke="#C41E3A" strokeWidth="1.5"/>
+                    <path d="M38 130 L38 80 Q60 55 82 80 L82 130" stroke="#C41E3A" strokeWidth="1.5"/>
+                    <rect x="18" y="8" width="14" height="20" stroke="#C41E3A" strokeWidth="1.2"/>
+                    <rect x="53" y="4" width="14" height="16" stroke="#C41E3A" strokeWidth="1.2"/>
+                    <rect x="88" y="8" width="14" height="20" stroke="#C41E3A" strokeWidth="1.2"/>
+                    <circle cx="60" cy="90" r="10" stroke="#C41E3A" strokeWidth="1.2"/>
+                    <line x1="10" y1="50" x2="110" y2="50" stroke="#C41E3A" strokeWidth="0.5" strokeDasharray="3 3"/>
                   </svg>
-                  <span className="font-['Space_Grotesk'] text-[10px] tracking-[0.3em] text-[#726E6A] text-center px-4">
+                  <span className="font-['Space_Grotesk'] text-[10px] tracking-[0.3em] text-[#5A5460] text-center px-4">
                     ADD PHOTO IN ADMIN
                   </span>
                 </div>
               )}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#09090B]/50 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#060608]/50 via-transparent to-transparent" />
             </div>
 
-            <div className="absolute -bottom-4 -right-4 glass border border-[#C8A050]/25 px-5 py-3 rounded-xl shadow-gold">
-              <p className="font-['Cinzel'] text-[10px] text-[#C8A050] tracking-widest">DJ & PRODUCER</p>
-              <p className="font-['Cinzel'] font-bold text-[#EEE8DF] text-sm">CASTLE</p>
+            <div className="absolute -bottom-4 -right-4 glass border border-[#C41E3A]/25 px-5 py-3 rounded-xl shadow-red">
+              <p className="font-['Bebas_Neue'] text-[10px] text-[#C41E3A] tracking-widest">DJ & PRODUCER</p>
+              <p className="font-['Bebas_Neue'] text-[#F0ECEA] text-sm">CASTLE</p>
             </div>
           </div>
         </motion.div>
@@ -78,7 +78,7 @@ export default function About() {
           animate={isInView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.65, delay: 0.15 }}
         >
-          <span className="font-['Space_Grotesk'] text-xs tracking-[0.4em] text-[#C8A050] uppercase mb-4 block">
+          <span className="font-['Space_Grotesk'] text-xs tracking-[0.4em] text-[#C41E3A] uppercase mb-4 block">
             About the Artist
           </span>
 
@@ -87,21 +87,21 @@ export default function About() {
               initial={{ y: 50 }}
               animate={isInView ? { y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="font-['Cinzel'] font-bold text-[clamp(2rem,5vw,3.25rem)] text-[#EEE8DF] mb-6 leading-tight"
+              className="font-['Bebas_Neue'] text-[clamp(2rem,5vw,3.25rem)] text-[#F0ECEA] mb-6 leading-tight"
             >
               Sound Is My
-              <span className="block text-[#C8A050] glow-gold">Architecture</span>
+              <span className="block text-[#C41E3A] glow-red">Architecture</span>
             </motion.h2>
           </div>
 
-          <p className="font-['Space_Grotesk'] text-[#726E6A] leading-relaxed mb-5 text-[0.9rem]">
+          <p className="font-['Space_Grotesk'] text-[#5A5460] leading-relaxed mb-5 text-[0.9rem]">
             {artist.bio1}
           </p>
-          <p className="font-['Space_Grotesk'] text-[#726E6A] leading-relaxed mb-10 text-[0.9rem]">
+          <p className="font-['Space_Grotesk'] text-[#5A5460] leading-relaxed mb-10 text-[0.9rem]">
             {artist.bio2.split("NÔMA").map((part, i) =>
               i === 0 ? part : (
                 <span key={i}>
-                  <span className="text-[#C8A050] font-medium">NÔMA</span>
+                  <span className="text-[#C41E3A] font-medium">NÔMA</span>
                   {part}
                 </span>
               )
@@ -116,10 +116,10 @@ export default function About() {
                 initial={{ opacity: 0, y: 16 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: 0.35 + i * 0.08 }}
-                className="glass border border-[#C8A050]/10 rounded-xl p-4 text-center"
+                className="glass border border-[#C41E3A]/10 rounded-xl p-4 text-center"
               >
                 <AnimatedCounter value={s.value} />
-                <p className="font-['Space_Grotesk'] text-[10px] text-[#726E6A] tracking-wider mt-1 leading-tight">
+                <p className="font-['Space_Grotesk'] text-[10px] text-[#5A5460] tracking-wider mt-1 leading-tight">
                   {s.label}
                 </p>
               </motion.div>

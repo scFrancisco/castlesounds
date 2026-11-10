@@ -29,7 +29,7 @@ export default function AdminSound() {
     <div className="space-y-10">
       {/* Featured track */}
       <div>
-        <h3 className="font-['Cinzel'] font-semibold text-[#C8A050] text-sm tracking-widest mb-4 pb-2 border-b border-[#C8A050]/15">
+        <h3 className="font-['Bebas_Neue'] font-semibold text-[#C41E3A] text-sm tracking-widest mb-4 pb-2 border-b border-[#C41E3A]/15">
           Featured Release
         </h3>
         <div className="grid sm:grid-cols-3 gap-4">
@@ -47,21 +47,21 @@ export default function AdminSound() {
 
       {/* Track list */}
       <div>
-        <div className="flex items-center justify-between mb-4 pb-2 border-b border-[#C8A050]/15">
-          <h3 className="font-['Cinzel'] font-semibold text-[#C8A050] text-sm tracking-widest">Track List</h3>
+        <div className="flex items-center justify-between mb-4 pb-2 border-b border-[#C41E3A]/15">
+          <h3 className="font-['Bebas_Neue'] font-semibold text-[#C41E3A] text-sm tracking-widest">Track List</h3>
           <button
             onClick={() => setTracks([...tracks, newTrack()])}
-            className="px-4 py-2 glass border border-[#C8A050]/30 text-[#C8A050] text-xs font-['Space_Grotesk'] tracking-[0.1em] hover:bg-[#C8A050]/10 transition-all rounded-sm"
+            className="px-4 py-2 glass border border-[#C41E3A]/30 text-[#C41E3A] text-xs font-['Space_Grotesk'] tracking-[0.1em] hover:bg-[#C41E3A]/10 transition-all rounded-sm"
           >
             + ADD TRACK
           </button>
         </div>
         <div className="space-y-4">
           {tracks.map((track, i) => (
-            <div key={track.id} className="glass border border-[#EEE8DF]/5 hover:border-[#C8A050]/15 rounded-xl p-5 transition-all">
+            <div key={track.id} className="glass border border-[#F0ECEA]/5 hover:border-[#C41E3A]/15 rounded-xl p-5 transition-all">
               <div className="flex items-center justify-between mb-4">
-                <span className="font-['Cinzel'] text-xs text-[#C8A050] tracking-widest">TRACK {i + 1}</span>
-                <button onClick={() => removeTrack(track.id)} className="text-xs font-['Space_Grotesk'] text-[#C8A050] hover:text-[#ff4444]">
+                <span className="font-['Bebas_Neue'] text-xs text-[#C41E3A] tracking-widest">TRACK {i + 1}</span>
+                <button onClick={() => removeTrack(track.id)} className="text-xs font-['Space_Grotesk'] text-[#C41E3A] hover:text-[#ff4444]">
                   REMOVE
                 </button>
               </div>
