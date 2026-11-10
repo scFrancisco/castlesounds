@@ -1,39 +1,37 @@
 "use client";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
 import { useSiteConfig } from "@/context/SiteConfigContext";
 
 export default function Hero() {
   const { config } = useSiteConfig();
   const { artist, featuredTrack } = config;
-  const ref = useRef<HTMLElement>(null);
-
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const videoY = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
-  const opacity = useTransform(scrollYProgress, [0, 0.65], [1, 0]);
 
   return (
-    <section ref={ref} className="relative min-h-screen flex items-center justify-center overflow-hidden grid-bg">
-      {/* Video background */}
-      <motion.div style={{ y: videoY }} className="absolute inset-0 pointer-events-none">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden grid-bg">
+      {/* Video background — static, no parallax for perf */}
+      <div className="absolute inset-0 pointer-events-none">
         <video
           autoPlay
           muted
           loop
           playsInline
-          className="absolute inset-0 w-full h-full object-cover opacity-30"
-          src="/castle-mask-loop.mp4"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#060608]/60 via-[#060608]/20 to-[#060608]/80" />
-      </motion.div>
-
-      {/* Ambient orbs over the video */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="orb w-[500px] h-[500px] bg-[#C41E3A]/12 top-[-80px] right-[-120px]" />
-        <div className="orb w-[300px] h-[300px] bg-[#00E5D0]/8 bottom-[-40px] left-[-80px]" />
+          preload="none"
+          className="absolute inset-0 w-full h-full object-cover opacity-25"
+          style={{ willChange: "auto" }}
+        >
+          <source src="/castle-mask-loop.webm" type="video/webm" />
+          <source src="/castle-mask-loop.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-gradient-to-b from-[#060608]/65 via-[#060608]/15 to-[#060608]/85" />
       </div>
 
-      <motion.div style={{ opacity }} className="relative z-10 text-center px-6 max-w-5xl mx-auto w-full">
+      {/* Ambient orbs */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="orb w-[500px] h-[500px] bg-[#C41E3A]/10 top-[-80px] right-[-120px]" />
+        <div className="orb w-[300px] h-[300px] bg-[#00E5D0]/7 bottom-[-40px] left-[-80px]" />
+      </div>
+
+      <div className="relative z-10 text-center px-6 max-w-5xl mx-auto w-full">
         {/* Location eyebrow */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
@@ -117,7 +115,7 @@ export default function Hero() {
             className="w-px h-10 bg-gradient-to-b from-[#C41E3A]/50 to-transparent"
           />
         </motion.div>
-      </motion.div>
+      </div>
     </section>
   );
 }

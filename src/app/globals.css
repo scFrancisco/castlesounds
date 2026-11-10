@@ -22,6 +22,9 @@ body {
   overflow-x: hidden;
 }
 
+/* Remove default link underlines (Tailwind preflight adds them) */
+a { text-decoration: none; }
+
 ::-webkit-scrollbar { width: 2px; }
 ::-webkit-scrollbar-track { background: #060608; }
 ::-webkit-scrollbar-thumb { background: #C41E3A; border-radius: 2px; }
@@ -68,8 +71,7 @@ body {
   pointer-events: none;
 }
 
-/* Skip off-screen rendering for perf */
+/* Promote composited layer for smooth scroll */
 #about, #sound, #events, #booking {
-  content-visibility: auto;
-  contain-intrinsic-size: 0 600px;
+  transform: translateZ(0);
 }
