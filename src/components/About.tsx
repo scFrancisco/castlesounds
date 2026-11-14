@@ -8,7 +8,7 @@ import { gsap, useGSAP, MOTION_OK } from "@/lib/gsap";
 export default function About() {
   const { config } = useSiteConfig();
   const { artist, stats } = config;
-  const photo = artist.photo || "/photos/mask-arms-crossed.jpg";
+  const photo = artist.photo || "/photos/mask-studio.jpg";
   const root = useRef<HTMLElement>(null);
 
   // The photo opens from a narrow window and settles as you scroll past it

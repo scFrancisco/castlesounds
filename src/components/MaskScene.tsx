@@ -2,9 +2,9 @@
 import { useRef } from "react";
 import { gsap, useGSAP, MOTION_OK } from "@/lib/gsap";
 
-const PHOTO = "/photos/mask-studio.jpg";
+const PHOTO = "/photos/mask-arms-crossed.jpg";
 // where the eyes sit in the photograph — the zoom starts there
-const FOCUS = "50% 43%";
+const FOCUS = "50% 32%";
 
 /*
   A pinned scene: the screen starts on the mask's eyes and pulls back as you
