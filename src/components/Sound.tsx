@@ -20,7 +20,7 @@ export default function Sound() {
         <div className="md:col-span-5">
           <h2 className="font-display text-[18vw] uppercase leading-[0.85] md:text-[9vw]">
             <MaskLine>Latest</MaskLine>
-            <MaskLine delay={0.08} className="text-signal">{featuredTrack.title}</MaskLine>
+            <MaskLine delay={0.08} className="accent pb-[0.1em] pr-[0.1em]">{featuredTrack.title}.</MaskLine>
           </h2>
           <Reveal delay={0.15}>
             <p className="mt-6 max-w-sm text-bone">

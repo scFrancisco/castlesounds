@@ -7,11 +7,15 @@ import Gallery from "@/components/Gallery";
 import Marquee from "@/components/Marquee";
 import Booking from "@/components/Booking";
 import Footer from "@/components/Footer";
+import Opening from "@/components/Opening";
+import SideIndex from "@/components/SideIndex";
 
 export default function Home() {
   return (
     <main>
+      <Opening />
       <Navbar />
+      <SideIndex />
       <Hero />
       <Marquee />
       <About />

@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { RollText } from "@/components/ui";
 
 export const navLinks = [
   { label: "About", href: "#about", index: "01" },
@@ -51,12 +52,9 @@ export default function Navbar() {
           <ul className="hidden items-start gap-8 font-mono text-[11px] uppercase tracking-[0.18em] md:flex">
             {navLinks.map((l) => (
               <li key={l.href}>
-                <a href={l.href} className="group flex gap-1.5 opacity-80 transition-opacity hover:opacity-100">
+                <a href={l.href} className="roll-host flex gap-1.5 opacity-80 transition-opacity hover:opacity-100">
                   <span className="opacity-50">{l.index}</span>
-                  <span className="relative">
-                    {l.label}
-                    <span className="absolute -bottom-0.5 left-0 h-px w-0 bg-current transition-all duration-300 group-hover:w-full" />
-                  </span>
+                  <RollText text={l.label} />
                 </a>
               </li>
             ))}
@@ -64,8 +62,8 @@ export default function Navbar() {
 
           <div className="hidden items-center gap-6 font-mono text-[11px] uppercase tracking-[0.18em] md:flex">
             <span className="opacity-60">LRA {time}</span>
-            <a href="#booking" className="border-b border-current pb-0.5">
-              Book ↗
+            <a href="#booking" className="roll-host border-b border-current pb-0.5">
+              <RollText text="Book ↗" />
             </a>
           </div>
 

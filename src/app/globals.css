@@ -18,6 +18,7 @@
   --font-display: "Anton", "Impact", sans-serif;
   --font-body:    "Inter Tight", system-ui, sans-serif;
   --font-mono:    "JetBrains Mono", ui-monospace, monospace;
+  --font-serif:   "Instrument Serif", Georgia, serif;
 }
 
 * { box-sizing: border-box; }
@@ -58,6 +59,35 @@ a { text-decoration: none; }
   100% { transform: translate(0, 0); }
 }
 
+/* Outline lettering for the name strips */
+.text-outline {
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--color-cream);
+}
+@media (min-width: 768px) {
+  .text-outline { -webkit-text-stroke-width: 2px; }
+}
+
+/* Italic serif accent line used in headings ("Sound is my / architecture.") */
+.accent {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: -0.01em;
+  color: var(--color-signal);
+}
+
+/* Rolling letters on hover: each char slides up and its copy rolls in */
+.roll { display: inline-flex; overflow: hidden; vertical-align: top; }
+.roll > span { display: inline-block; position: relative; transition: transform 0.45s cubic-bezier(0.76, 0, 0.24, 1); }
+.roll > span::after { content: attr(data-c); position: absolute; left: 0; top: 100%; }
+.roll-host:hover .roll > span, .roll-host:focus-visible .roll > span { transform: translateY(-100%); }
+
+/* Blinking caret for the booth-radio line */
+.caret { display: inline-block; width: 0.55em; height: 1em; background: currentColor; vertical-align: -0.12em; animation: caret 1s steps(1) infinite; }
+@keyframes caret { 50% { opacity: 0; } }
+
 /* Infinite marquee */
 .marquee-track {
   display: flex;
@@ -89,4 +119,9 @@ a { text-decoration: none; }
 
 @media (prefers-reduced-motion: reduce) {
   .grain::after, .marquee-track { animation: none; }
+}
+
+@keyframes indexIn {
+  from { transform: translateY(100%); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
 }

@@ -1,6 +1,8 @@
 "use client";
 import { useSiteConfig } from "@/context/SiteConfigContext";
 import { navLinks } from "@/components/Navbar";
+import { useRef } from "react";
+import { gsap, useGSAP, MOTION_OK } from "@/lib/gsap";
 
 const iconSvgs: Record<string, React.ReactNode> = {
   IG: (
@@ -54,9 +56,34 @@ export default function Footer() {
   const { config } = useSiteConfig();
   const { socials, artist } = config;
   const activeSocials = socials.filter((s) => s.active);
+  const root = useRef<HTMLElement>(null);
+
+  useGSAP(
+    () => {
+      const mm = gsap.matchMedia();
+      mm.add(MOTION_OK, () => {
+        gsap.fromTo(
+          "[data-foot-strip]",
+          { xPercent: 0 },
+          {
+            xPercent: -34,
+            ease: "none",
+            scrollTrigger: { trigger: root.current, start: "top bottom", end: "bottom bottom", scrub: 0.6 },
+          }
+        );
+      });
+      return () => mm.revert();
+    },
+    { scope: root }
+  );
 
   return (
-    <footer className="grain relative overflow-hidden bg-ink px-4 pt-20 md:px-8 md:pt-28">
+    <footer ref={root} className="grain relative overflow-hidden bg-ink px-4 pt-20 md:px-8 md:pt-28">
+      <p className="relative z-10 mb-16 font-display text-[13vw] uppercase leading-[0.9] md:mb-24 md:text-[6vw]">
+        From Leiria
+        <span className="accent block pb-[0.1em]">to the floor.</span>
+      </p>
+
       <div className="relative z-10 grid gap-12 md:grid-cols-12">
         <div className="md:col-span-4">
           <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-bone">Follow</p>
@@ -108,13 +135,19 @@ export default function Footer() {
         <a href="#" className="hover:text-cream">Back to top ↑</a>
       </div>
 
-      {/* Giant wordmark bleeding off the bottom edge */}
-      <p
-        aria-hidden
-        className="relative z-0 -mb-[3vw] mt-6 select-none whitespace-nowrap text-center font-display text-[15.5vw] uppercase leading-none text-blood"
-      >
-        Castlesounds
-      </p>
+      {/* Giant name strip, driven sideways by the scroll */}
+      <div aria-hidden className="relative z-0 -mx-4 mt-6 overflow-hidden md:-mx-8">
+        <div data-foot-strip className="flex w-max whitespace-nowrap font-display text-[24vw] uppercase leading-[0.82] md:text-[17vw]">
+          {[0, 1, 2].map((k) => (
+            <span key={k} className="flex">
+              <span className="text-cream">Castle</span>
+              <span className="px-[0.15em] text-signal">—</span>
+              <span className="text-outline">Sounds</span>
+              <span className="px-[0.15em] text-signal">—</span>
+            </span>
+          ))}
+        </div>
+      </div>
     </footer>
   );
 }

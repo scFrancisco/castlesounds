@@ -70,3 +70,21 @@ export function SectionLabel({ index, label }: { index: string; label: string })
     </div>
   );
 }
+
+/** Text whose letters roll up on hover of the closest `.roll-host`. */
+export function RollText({ text }: { text: string }) {
+  return (
+    <span className="roll" aria-label={text}>
+      {text.split("").map((c, i) => (
+        <span
+          key={i}
+          aria-hidden
+          data-c={c === " " ? " " : c}
+          style={{ transitionDelay: `${i * 18}ms` }}
+        >
+          {c === " " ? " " : c}
+        </span>
+      ))}
+    </span>
+  );
+}

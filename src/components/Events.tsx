@@ -1,6 +1,7 @@
 "use client";
 import { useSiteConfig } from "@/context/SiteConfigContext";
 import { Reveal, MaskLine, SectionLabel } from "@/components/ui";
+import Countdown from "@/components/Countdown";
 
 export default function Events() {
   const { config } = useSiteConfig();
@@ -12,13 +13,18 @@ export default function Events() {
 
       <div className="mt-10 flex flex-col justify-between gap-6 md:mt-16 md:flex-row md:items-end">
         <h2 className="font-display text-[18vw] uppercase leading-[0.85] md:text-[9vw]">
-          <MaskLine>On tour</MaskLine>
+          <MaskLine>On</MaskLine>
+          <MaskLine delay={0.08} className="accent pb-[0.1em] pr-[0.1em]">tour.</MaskLine>
         </h2>
         <Reveal y={10}>
           <p className="max-w-xs font-mono text-[11px] uppercase leading-relaxed tracking-[0.15em] text-bone">
             Upcoming shows across Portugal. For private events and clubs, see booking.
           </p>
         </Reveal>
+      </div>
+
+      <div className="mt-14 md:mt-20">
+        <Countdown events={events} />
       </div>
 
       {events.length === 0 ? (
