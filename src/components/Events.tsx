@@ -1,144 +1,61 @@
 "use client";
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
 import { useSiteConfig } from "@/context/SiteConfigContext";
+import { Reveal, MaskLine, SectionLabel } from "@/components/ui";
 
 export default function Events() {
   const { config } = useSiteConfig();
-  const { events, gallery } = config;
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const { events } = config;
 
   return (
-    <section id="events" className="relative py-28 overflow-hidden" ref={ref}>
-      <div className="orb w-[320px] h-[320px] bg-[#C41E3A]/7 top-10 right-0" />
+    <section id="events" className="relative px-4 py-24 md:px-8 md:py-36">
+      <SectionLabel index="03" label="Dates" />
 
-      <div className="max-w-6xl mx-auto px-6">
-        {/* Header */}
-        <div className="text-center mb-14">
-          <motion.span
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : {}}
-            className="font-['Space_Grotesk'] text-xs tracking-[0.4em] text-[#C41E3A] uppercase mb-4 block"
-          >
-            Live Dates & Gallery
-          </motion.span>
-          <div className="overflow-hidden">
-            <motion.h2
-              initial={{ y: 50 }}
-              animate={isInView ? { y: 0 } : {}}
-              transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-              className="font-['Bebas_Neue'] text-[clamp(2rem,5vw,3.25rem)] text-[#F0ECEA]"
-            >
-              UPCOMING <span className="text-[#C41E3A] glow-red">EVENTS</span>
-            </motion.h2>
-          </div>
-        </div>
+      <div className="mt-10 flex flex-col justify-between gap-6 md:mt-16 md:flex-row md:items-end">
+        <h2 className="font-display text-[18vw] uppercase leading-[0.85] md:text-[9vw]">
+          <MaskLine>On tour</MaskLine>
+        </h2>
+        <Reveal y={10}>
+          <p className="max-w-xs font-mono text-[11px] uppercase leading-relaxed tracking-[0.15em] text-bone">
+            Upcoming shows across Portugal. For private events and clubs, see booking.
+          </p>
+        </Reveal>
+      </div>
 
-        {events.length === 0 ? (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : {}}
-            className="glass border border-[#C41E3A]/10 rounded-2xl p-10 text-center mb-20"
-          >
-            <p className="font-['Space_Grotesk'] text-[#5A5460] text-sm">
-              No upcoming events — add them in the Admin panel.
-            </p>
-          </motion.div>
-        ) : (
-          <div className="grid gap-3 mb-20">
-            {events.map((event, i) => (
-              <motion.div
-                key={event.id}
-                initial={{ opacity: 0, x: -20 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ delay: 0.08 + i * 0.08, ease: "easeOut" }}
-                className="group glass border border-[#F0ECEA]/5 hover:border-[#F0ECEA]/10 rounded-2xl px-6 py-5 flex flex-col sm:flex-row sm:items-center gap-4 transition-all duration-200"
-              >
-                <div className="flex-shrink-0 text-center sm:w-20">
-                  <p className="font-['Bebas_Neue'] text-2xl" style={{ color: event.color }}>{event.date}</p>
-                  <p className="font-['Space_Grotesk'] text-xs text-[#5A5460]">{event.year}</p>
-                </div>
-                <div className="w-px h-10 bg-[#F0ECEA]/7 hidden sm:block" />
-                <div className="flex-1 min-w-0">
-                  <p className="font-['Bebas_Neue'] text-[#F0ECEA] text-sm">{event.name}</p>
-                  <p className="font-['Space_Grotesk'] text-xs text-[#5A5460] mt-1">
-                    {event.venue} · {event.city}
-                  </p>
-                </div>
-                <div
-                  className="self-start sm:self-center px-3 py-1 rounded-full border text-xs font-['Space_Grotesk'] tracking-widest"
-                  style={{ borderColor: `${event.color}40`, color: event.color }}
-                >
-                  {event.type}
-                </div>
+      {events.length === 0 ? (
+        <p className="mt-16 border-y border-cream/15 py-10 font-mono text-xs uppercase tracking-[0.2em] text-bone">
+          New dates announced soon.
+        </p>
+      ) : (
+        <ul className="mt-14 border-t border-cream/15 md:mt-20">
+          {events.map((event, i) => (
+            <Reveal as="li" key={event.id} delay={i * 0.06} y={20} className="group relative border-b border-cream/15">
+                {/* Red wipe on hover */}
+                <span className="absolute inset-0 origin-bottom scale-y-0 bg-signal transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-y-100" />
                 <a
                   href="#booking"
-                  className="self-start sm:self-center px-5 py-2 glass border border-[#F0ECEA]/8 hover:border-[#C41E3A]/30 text-xs font-['Space_Grotesk'] tracking-[0.1em] transition-all duration-200 rounded-sm text-[#5A5460] hover:text-[#C41E3A] min-h-[40px] flex items-center"
+                  className="relative grid grid-cols-[5.5rem_1fr] gap-x-4 gap-y-1 py-6 md:grid-cols-[10rem_1fr_16rem_12rem_7rem] md:items-center md:gap-6 md:px-3 md:py-8"
                 >
-                  INQUIRE
+                  <span className="row-span-2 font-display text-3xl uppercase leading-none md:row-span-1 md:text-5xl">
+                    {event.date}
+                    <span className="block font-mono text-[10px] tracking-[0.2em] text-bone group-hover:text-cream/80 md:mt-1">
+                      {event.year}
+                    </span>
+                  </span>
+                  <span className="font-display text-2xl uppercase leading-tight md:text-4xl">{event.name}</span>
+                  <span className="font-mono text-[11px] uppercase tracking-[0.15em] text-bone group-hover:text-cream">
+                    {event.venue} — {event.city}
+                  </span>
+                  <span className="hidden font-mono text-[11px] uppercase tracking-[0.15em] text-bone group-hover:text-cream md:block">
+                    {event.type}
+                  </span>
+                  <span className="hidden text-right font-mono text-[11px] uppercase tracking-[0.15em] md:block">
+                    Inquire →
+                  </span>
                 </a>
-              </motion.div>
-            ))}
-          </div>
-        )}
-
-        {/* Gallery */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.3 }}
-        >
-          <h3 className="font-['Bebas_Neue'] text-lg text-[#F0ECEA] mb-6 text-center tracking-wider">
-            PHOTO <span className="text-[#5A5460]">GALLERY</span>
-          </h3>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-2.5">
-            {gallery.map((item, i) => (
-              <motion.div
-                key={item.id}
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                transition={{ delay: 0.35 + i * 0.06 }}
-                className={`relative overflow-hidden rounded-xl group cursor-pointer ${item.span === "wide" ? "col-span-2 md:col-span-1" : ""}`}
-                style={{ aspectRatio: item.span === "wide" ? "16/9" : "1" }}
-              >
-                {item.src ? (
-                  <>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={item.src}
-                      alt={item.alt}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#060608]/55 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    <p className="absolute bottom-3 left-3 font-['Space_Grotesk'] text-xs text-[#F0ECEA] opacity-0 group-hover:opacity-100 transition-opacity duration-300 tracking-widest">
-                      {item.alt}
-                    </p>
-                  </>
-                ) : (
-                  <div className="w-full h-full glass border border-[#C41E3A]/7 flex items-center justify-center">
-                    <div className="absolute inset-0 bg-gradient-to-br from-[#C41E3A]/4 to-[#00E5D0]/4 group-hover:from-[#C41E3A]/10 group-hover:to-[#00E5D0]/8 transition-all duration-400" />
-                    <div className="relative text-center px-4">
-                      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" className="mx-auto opacity-15 mb-2">
-                        <rect x="2" y="6" width="28" height="20" rx="3" stroke="#C41E3A" strokeWidth="1.5"/>
-                        <circle cx="11" cy="13" r="2.5" stroke="#C41E3A" strokeWidth="1.5"/>
-                        <path d="M2 22L10 15L15 20L22 13L30 22" stroke="#C41E3A" strokeWidth="1.5" strokeLinejoin="round"/>
-                      </svg>
-                      <p className="font-['Space_Grotesk'] text-[9px] tracking-widest text-[#5A5460]">{item.alt}</p>
-                    </div>
-                  </div>
-                )}
-              </motion.div>
-            ))}
-          </div>
-          <p className="text-center font-['Space_Grotesk'] text-xs text-[#5A5460] mt-4">
-            Manage photos and events in the{" "}
-            <a href="/admin" className="text-[#C41E3A] hover:underline">Admin Panel</a>
-          </p>
-        </motion.div>
-      </div>
+            </Reveal>
+          ))}
+        </ul>
+      )}
     </section>
   );
 }

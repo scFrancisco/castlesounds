@@ -1,77 +1,92 @@
 @import "tailwindcss";
 
+/*
+  Palette sampled from the hero video (castle-mask-loop):
+  near-black stage, oxblood walls, blood-red light, bone mask tones
+  and the cyan of the inverted flash frame.
+*/
 @theme {
-  --color-cs-bg:       #060608;
-  --color-cs-surface:  #0D0B10;
-  --color-cs-red:      #C41E3A;
-  --color-cs-red-lt:   #E0304E;
-  --color-cs-cyan:     #00E5D0;
-  --color-cs-cyan-dk:  #00B8A6;
-  --color-cs-cream:    #F0ECEA;
-  --color-cs-muted:    #5A5460;
-  --font-display: "Bebas Neue", sans-serif;
-  --font-body:    "Space Grotesk", sans-serif;
+  --color-ink:      #090203;
+  --color-oxblood:  #220709;
+  --color-maroon:   #44070A;
+  --color-blood:    #6F0B10;
+  --color-signal:   #B52226;
+  --color-bone:     #AF8374;
+  --color-cream:    #EDE3DA;
+  --color-flash:    #D3F8F7;
+
+  --font-display: "Anton", "Impact", sans-serif;
+  --font-body:    "Inter Tight", system-ui, sans-serif;
+  --font-mono:    "JetBrains Mono", ui-monospace, monospace;
 }
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 
 body {
-  background-color: #060608;
-  color: #F0ECEA;
+  background-color: var(--color-ink);
+  color: var(--color-cream);
+  font-family: var(--font-body);
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Remove default link underlines (Tailwind preflight adds them) */
 a { text-decoration: none; }
 
-::-webkit-scrollbar { width: 2px; }
-::-webkit-scrollbar-track { background: #060608; }
-::-webkit-scrollbar-thumb { background: #C41E3A; border-radius: 2px; }
+::selection { background: var(--color-signal); color: var(--color-cream); }
 
-/* Glass — no backdrop-filter for performance */
-.glass {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(240, 236, 234, 0.06);
-}
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--color-ink); }
+::-webkit-scrollbar-thumb { background: var(--color-signal); }
 
-/* Blur glass — only for navbar */
-.glass-nav {
-  background: rgba(6, 6, 8, 0.90);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-}
-
-/* Glows */
-.glow-red {
-  text-shadow: 0 0 60px rgba(196, 30, 58, 0.5);
-}
-
-.glow-cyan {
-  text-shadow: 0 0 40px rgba(0, 229, 208, 0.5);
-}
-
-.shadow-red {
-  box-shadow: 0 4px 24px rgba(196, 30, 58, 0.3), 0 0 60px rgba(196, 30, 58, 0.1);
-}
-
-/* Subtle red grid */
-.grid-bg {
-  background-image:
-    linear-gradient(rgba(196, 30, 58, 0.018) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(196, 30, 58, 0.018) 1px, transparent 1px);
-  background-size: 80px 80px;
-}
-
-/* Ambient orbs */
-.orb {
-  border-radius: 50%;
-  filter: blur(90px);
+/* Film grain — keeps the low-res video and flat blacks feeling analog */
+.grain::after {
+  content: "";
   position: absolute;
+  inset: -50%;
   pointer-events: none;
+  opacity: 0.09;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain 1.2s steps(4) infinite;
 }
 
-/* Promote composited layer for smooth scroll */
-#about, #sound, #events, #booking {
-  transform: translateZ(0);
+@keyframes grain {
+  0%   { transform: translate(0, 0); }
+  25%  { transform: translate(-3%, 2%); }
+  50%  { transform: translate(2%, -3%); }
+  75%  { transform: translate(-2%, -1%); }
+  100% { transform: translate(0, 0); }
+}
+
+/* Infinite marquee */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 28s linear infinite;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* Red duotone for photos — full colour on hover */
+.duotone {
+  filter: grayscale(1) contrast(1.1) brightness(0.85);
+  transition: filter 0.6s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.duotone-wrap { background: var(--color-blood); }
+.duotone-wrap .duotone { mix-blend-mode: luminosity; }
+.duotone-wrap:hover .duotone {
+  filter: none;
+  mix-blend-mode: normal;
+  transform: scale(1.04);
+}
+
+/* Hide horizontal scrollbar on the gallery strip */
+.no-scrollbar { scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .grain::after, .marquee-track { animation: none; }
 }

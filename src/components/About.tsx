@@ -1,131 +1,76 @@
 "use client";
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
 import { useSiteConfig } from "@/context/SiteConfigContext";
-
-function AnimatedCounter({ value }: { value: string }) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
-  return (
-    <motion.span
-      ref={ref}
-      initial={{ opacity: 0, y: 8 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.4 }}
-      className="font-['Bebas_Neue'] text-2xl text-[#C41E3A]"
-    >
-      {value}
-    </motion.span>
-  );
-}
+import { Reveal, MaskLine, SectionLabel } from "@/components/ui";
 
 export default function About() {
   const { config } = useSiteConfig();
   const { artist, stats } = config;
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const photo = artist.photo || "/photos/castle-mask.jpg";
 
   return (
-    <section id="about" className="relative py-28 overflow-hidden" ref={ref}>
-      <div className="orb w-[400px] h-[400px] bg-[#C41E3A]/7 top-0 right-[-120px]" />
+    <section id="about" className="relative px-4 pb-24 pt-24 md:px-8 md:pb-40 md:pt-36">
+      <SectionLabel index="01" label="About" />
 
-      <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
-        {/* Visual */}
-        <motion.div
-          initial={{ opacity: 0, x: -30 }}
-          animate={isInView ? { opacity: 1, x: 0 } : {}}
-          transition={{ duration: 0.65 }}
-          className="relative flex justify-center"
-        >
-          <div className="relative max-w-sm w-full">
-            <div className="absolute inset-[-10px] rounded-2xl border border-[#C41E3A]/12" />
-            <div
-              className="relative rounded-2xl overflow-hidden border border-[#C41E3A]/18"
-              style={{ aspectRatio: "480/520" }}
-            >
-              {artist.photo ? (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img src={artist.photo} alt={artist.name} className="w-full h-full object-cover" loading="lazy" />
-              ) : (
-                <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-[#C41E3A]/6 to-[#00E5D0]/4">
-                  <svg viewBox="0 0 120 140" fill="none" className="w-32 h-36 opacity-25 mb-4">
-                    <path d="M60 10 L110 35 L110 130 L10 130 L10 35 Z" stroke="#C41E3A" strokeWidth="1.5"/>
-                    <path d="M38 130 L38 80 Q60 55 82 80 L82 130" stroke="#C41E3A" strokeWidth="1.5"/>
-                    <rect x="18" y="8" width="14" height="20" stroke="#C41E3A" strokeWidth="1.2"/>
-                    <rect x="53" y="4" width="14" height="16" stroke="#C41E3A" strokeWidth="1.2"/>
-                    <rect x="88" y="8" width="14" height="20" stroke="#C41E3A" strokeWidth="1.2"/>
-                    <circle cx="60" cy="90" r="10" stroke="#C41E3A" strokeWidth="1.2"/>
-                    <line x1="10" y1="50" x2="110" y2="50" stroke="#C41E3A" strokeWidth="0.5" strokeDasharray="3 3"/>
-                  </svg>
-                  <span className="font-['Space_Grotesk'] text-[10px] tracking-[0.3em] text-[#5A5460] text-center px-4">
-                    ADD PHOTO IN ADMIN
-                  </span>
-                </div>
-              )}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#060608]/50 via-transparent to-transparent" />
-            </div>
+      {/* Editorial statement */}
+      <h2 className="mt-10 max-w-[18ch] font-display text-[13vw] uppercase leading-[0.9] md:mt-16 md:text-[7.5vw]">
+        <MaskLine>Sound is my</MaskLine>
+        <MaskLine delay={0.08}>
+          <span className="text-signal">architecture</span>
+          <span className="text-bone">.</span>
+        </MaskLine>
+      </h2>
 
-            <div className="absolute -bottom-4 -right-4 glass border border-[#C41E3A]/25 px-5 py-3 rounded-xl shadow-red">
-              <p className="font-['Bebas_Neue'] text-[10px] text-[#C41E3A] tracking-widest">DJ & PRODUCER</p>
-              <p className="font-['Bebas_Neue'] text-[#F0ECEA] text-sm">CASTLE</p>
-            </div>
-          </div>
-        </motion.div>
+      <div className="mt-16 grid gap-12 md:mt-28 md:grid-cols-12 md:gap-8">
+        {/* Photo */}
+        <Reveal className="md:col-span-5">
+          <figure className="duotone-wrap relative aspect-[4/5] overflow-hidden">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={photo} alt={artist.name} loading="lazy" className="duotone h-full w-full object-cover" />
+            <figcaption className="absolute bottom-3 left-3 font-mono text-[10px] uppercase tracking-[0.2em] text-cream/80">
+              Castle — Leiria, PT
+            </figcaption>
+          </figure>
+        </Reveal>
 
         {/* Text */}
-        <motion.div
-          initial={{ opacity: 0, x: 30 }}
-          animate={isInView ? { opacity: 1, x: 0 } : {}}
-          transition={{ duration: 0.65, delay: 0.15 }}
-        >
-          <span className="font-['Space_Grotesk'] text-xs tracking-[0.4em] text-[#C41E3A] uppercase mb-4 block">
-            About the Artist
-          </span>
-
-          <div className="overflow-hidden">
-            <motion.h2
-              initial={{ y: 50 }}
-              animate={isInView ? { y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="font-['Bebas_Neue'] text-[clamp(2rem,5vw,3.25rem)] text-[#F0ECEA] mb-6 leading-tight"
-            >
-              Sound Is My
-              <span className="block text-[#C41E3A] glow-red">Architecture</span>
-            </motion.h2>
-          </div>
-
-          <p className="font-['Space_Grotesk'] text-[#5A5460] leading-relaxed mb-5 text-[0.9rem]">
-            {artist.bio1}
-          </p>
-          <p className="font-['Space_Grotesk'] text-[#5A5460] leading-relaxed mb-10 text-[0.9rem]">
-            {artist.bio2.split("NÔMA").map((part, i) =>
-              i === 0 ? part : (
-                <span key={i}>
-                  <span className="text-[#C41E3A] font-medium">NÔMA</span>
-                  {part}
-                </span>
-              )
-            )}
-          </p>
+        <div className="flex flex-col justify-between md:col-span-6 md:col-start-7">
+          <Reveal delay={0.1}>
+            <p className="text-xl font-light leading-snug text-cream md:text-[1.75rem] md:leading-[1.3]">
+              {artist.bio1}
+            </p>
+            <p className="mt-8 max-w-xl text-base leading-relaxed text-bone">
+              {artist.bio2.split(config.featuredTrack.title).map((part, i) =>
+                i === 0 ? part : (
+                  <span key={i}>
+                    <a
+                      href={config.featuredTrack.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="border-b border-signal text-cream transition-colors hover:text-signal"
+                    >
+                      {config.featuredTrack.title}
+                    </a>
+                    {part}
+                  </span>
+                )
+              )}
+            </p>
+          </Reveal>
 
           {/* Stats */}
-          <div className="grid grid-cols-3 gap-3">
+          <div className="mt-14 grid grid-cols-3 border-t border-cream/10">
             {stats.map((s, i) => (
-              <motion.div
-                key={s.id}
-                initial={{ opacity: 0, y: 16 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: 0.35 + i * 0.08 }}
-                className="glass border border-[#C41E3A]/10 rounded-xl p-4 text-center"
-              >
-                <AnimatedCounter value={s.value} />
-                <p className="font-['Space_Grotesk'] text-[10px] text-[#5A5460] tracking-wider mt-1 leading-tight">
-                  {s.label}
-                </p>
-              </motion.div>
+              <Reveal key={s.id} delay={0.15 + i * 0.08} y={20}>
+                <div className={`pt-5 ${i > 0 ? "border-l border-cream/10 pl-4 md:pl-6" : ""}`}>
+                  <p className="font-display text-5xl leading-none text-cream md:text-7xl">{s.value}</p>
+                  <p className="mt-3 font-mono text-[10px] uppercase leading-snug tracking-[0.15em] text-bone">
+                    {s.label}
+                  </p>
+                </div>
+              </Reveal>
             ))}
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

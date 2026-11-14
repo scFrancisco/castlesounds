@@ -2,97 +2,125 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const links = [
-  { label: "ABOUT", href: "#about" },
-  { label: "SOUND", href: "#sound" },
-  { label: "EVENTS", href: "#events" },
-  { label: "BOOKING", href: "#booking" },
+export const navLinks = [
+  { label: "About", href: "#about", index: "01" },
+  { label: "Sound", href: "#sound", index: "02" },
+  { label: "Dates", href: "#events", index: "03" },
+  { label: "Gallery", href: "#gallery", index: "04" },
+  { label: "Booking", href: "#booking", index: "05" },
 ];
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [time, setTime] = useState("");
 
+  // Live Lisbon clock — small editorial detail in the bar
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 60);
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    const fmt = () =>
+      new Intl.DateTimeFormat("en-GB", {
+        hour: "2-digit",
+        minute: "2-digit",
+        timeZone: "Europe/Lisbon",
+      }).format(new Date());
+    const tick = () => setTime(fmt());
+    const first = setTimeout(tick, 0);
+    const id = setInterval(tick, 30_000);
+    return () => {
+      clearTimeout(first);
+      clearInterval(id);
+    };
   }, []);
 
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+  }, [menuOpen]);
+
   return (
-    <motion.nav
-      initial={{ y: -60, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "glass-nav border-b border-[#C41E3A]/8 py-3" : "py-5"
-      }`}
-    >
-      <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
-        <a href="#" className="font-['Bebas_Neue'] text-lg tracking-[0.12em] text-[#C41E3A]">
-          CASTLE<span className="text-[#F0ECEA]/90">SOUNDS</span>
-        </a>
-
-        <div className="hidden md:flex items-center gap-8">
-          {links.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              className="font-['Space_Grotesk'] text-xs tracking-[0.2em] text-[#5A5460] hover:text-[#F0ECEA] transition-colors duration-200"
-            >
-              {l.label}
-            </a>
-          ))}
-          <a
-            href="#booking"
-            className="ml-4 px-5 py-2 text-xs tracking-[0.12em] font-['Space_Grotesk'] font-medium border border-[#C41E3A]/40 text-[#C41E3A] hover:bg-[#C41E3A]/10 transition-all duration-200 rounded-sm"
-          >
-            BOOK NOW
+    <>
+      <motion.nav
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8, delay: 0.6 }}
+        className="fixed inset-x-0 top-0 z-50 mix-blend-difference text-cream"
+      >
+        <div className="flex items-start justify-between px-4 py-4 md:px-8 md:py-6">
+          <a href="#" className="font-display text-xl uppercase leading-none tracking-wide md:text-2xl">
+            Castle<sup className="ml-0.5 font-mono text-[9px] tracking-normal">®</sup>
           </a>
-        </div>
 
-        <button
-          className="md:hidden p-3 -mr-2 min-h-[44px] min-w-[44px] flex flex-col items-center justify-center gap-1.5"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle menu"
-        >
-          <span className={`block w-5 h-px bg-[#F0ECEA] transition-all duration-200 ${menuOpen ? "rotate-45 translate-y-[5px]" : ""}`} />
-          <span className={`block w-5 h-px bg-[#F0ECEA] transition-all duration-200 ${menuOpen ? "opacity-0" : ""}`} />
-          <span className={`block w-5 h-px bg-[#F0ECEA] transition-all duration-200 ${menuOpen ? "-rotate-45 -translate-y-[5px]" : ""}`} />
-        </button>
-      </div>
+          <ul className="hidden items-start gap-8 font-mono text-[11px] uppercase tracking-[0.18em] md:flex">
+            {navLinks.map((l) => (
+              <li key={l.href}>
+                <a href={l.href} className="group flex gap-1.5 opacity-80 transition-opacity hover:opacity-100">
+                  <span className="opacity-50">{l.index}</span>
+                  <span className="relative">
+                    {l.label}
+                    <span className="absolute -bottom-0.5 left-0 h-px w-0 bg-current transition-all duration-300 group-hover:w-full" />
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+
+          <div className="hidden items-center gap-6 font-mono text-[11px] uppercase tracking-[0.18em] md:flex">
+            <span className="opacity-60">LRA {time}</span>
+            <a href="#booking" className="border-b border-current pb-0.5">
+              Book ↗
+            </a>
+          </div>
+
+          <button
+            className="-mt-3 flex min-h-[44px] min-w-[44px] items-center justify-end font-mono text-[11px] uppercase tracking-[0.18em] md:hidden"
+            onClick={() => setMenuOpen(true)}
+            aria-label="Open menu"
+          >
+            Menu
+          </button>
+        </div>
+      </motion.nav>
 
       <AnimatePresence>
         {menuOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.2 }}
-            className="md:hidden glass-nav border-t border-[#F0ECEA]/5 overflow-hidden"
+            initial={{ clipPath: "inset(0 0 100% 0)" }}
+            animate={{ clipPath: "inset(0 0 0% 0)" }}
+            exit={{ clipPath: "inset(0 0 100% 0)" }}
+            transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
+            className="fixed inset-0 z-[60] flex flex-col bg-signal px-4 py-4 text-ink md:hidden"
           >
-            <div className="flex flex-col px-6 py-5 gap-5">
-              {links.map((l) => (
-                <a
-                  key={l.href}
-                  href={l.href}
-                  onClick={() => setMenuOpen(false)}
-                  className="font-['Space_Grotesk'] text-sm tracking-[0.15em] text-[#5A5460] hover:text-[#F0ECEA] transition-colors min-h-[44px] flex items-center"
-                >
-                  {l.label}
-                </a>
-              ))}
-              <a
-                href="#booking"
+            <div className="flex items-start justify-between">
+              <span className="font-display text-xl uppercase leading-none">Castle</span>
+              <button
                 onClick={() => setMenuOpen(false)}
-                className="font-['Space_Grotesk'] text-sm tracking-[0.12em] text-[#C41E3A] border-t border-[#F0ECEA]/5 pt-5 min-h-[44px] flex items-center"
+                className="flex min-h-[44px] min-w-[44px] items-start justify-end font-mono text-[11px] uppercase tracking-[0.18em]"
+                aria-label="Close menu"
               >
-                BOOK NOW →
-              </a>
+                Close
+              </button>
             </div>
+            <ul className="mt-auto mb-10 flex flex-col">
+              {navLinks.map((l, i) => (
+                <motion.li
+                  key={l.href}
+                  initial={{ y: 40, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 0.25 + i * 0.06, duration: 0.5 }}
+                  className="border-t border-ink/20"
+                >
+                  <a
+                    href={l.href}
+                    onClick={() => setMenuOpen(false)}
+                    className="flex items-baseline justify-between py-2"
+                  >
+                    <span className="font-display text-[15vw] uppercase leading-[0.95]">{l.label}</span>
+                    <span className="font-mono text-xs">{l.index}</span>
+                  </a>
+                </motion.li>
+              ))}
+            </ul>
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.nav>
+    </>
   );
 }
