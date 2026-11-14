@@ -16,40 +16,31 @@ export default function MaskScene() {
   useGSAP(
     () => {
       const mm = gsap.matchMedia();
-      mm.add(
-        { desktop: `(min-width: 768px) and ${MOTION_OK}`, mobile: `(max-width: 767px) and ${MOTION_OK}` },
-        (ctx) => {
-          const desktop = !!ctx.conditions?.desktop;
-          const card = () =>
-            desktop
-              ? { w: window.innerHeight * 0.72 * (2 / 3), h: window.innerHeight * 0.72 }
-              : { w: window.innerWidth * 0.56, h: window.innerWidth * 0.56 * 1.5 };
+      mm.add(MOTION_OK, () => {
+        const win = root.current!.querySelector<HTMLElement>("[data-win]")!;
+        // how much the card must grow to just cover the screen — that's the starting zoom
+        const cover = () =>
+          Math.max(window.innerWidth / win.offsetWidth, window.innerHeight / win.offsetHeight) * 1.02;
 
-          gsap.timeline({
-            defaults: { ease: "none" },
-            scrollTrigger: {
-              trigger: root.current,
-              start: "top top",
-              end: "+=150%",
-              pin: true,
-              scrub: 0.6,
-              invalidateOnRefresh: true,
-            },
-          })
-            .fromTo(
-              "[data-win]",
-              { width: () => window.innerWidth, height: () => window.innerHeight },
-              { width: () => card().w, height: () => card().h, duration: 0.6, ease: "power2.inOut" },
-              0
-            )
-            .fromTo("[data-win] img", { scale: 2.6 }, { scale: 1, duration: 0.6, ease: "power2.inOut" }, 0)
-            .fromTo("[data-shade]", { opacity: 0.35 }, { opacity: 0, duration: 0.4 }, 0)
-            .fromTo("[data-word-l]", { xPercent: -60, opacity: 0 }, { xPercent: 0, opacity: 1, duration: 0.35, ease: "power3.out" }, 0.4)
-            .fromTo("[data-word-r]", { xPercent: 60, opacity: 0 }, { xPercent: 0, opacity: 1, duration: 0.35, ease: "power3.out" }, 0.45)
-            .fromTo("[data-cap]", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.2 }, 0.65)
-            .to({}, { duration: 0.15 });
-        }
-      );
+        gsap.timeline({
+          defaults: { ease: "none" },
+          scrollTrigger: {
+            trigger: root.current,
+            start: "top top",
+            end: "+=140%",
+            pin: true,
+            scrub: 1,
+            invalidateOnRefresh: true,
+          },
+        })
+          // transform-only (no width/height) so it stays on the GPU and glides
+          .fromTo(win, { scale: cover }, { scale: 1, duration: 0.6, ease: "power2.inOut" }, 0)
+          .fromTo("[data-shade]", { opacity: 0.3 }, { opacity: 0, duration: 0.4 }, 0)
+          .fromTo("[data-word-l]", { xPercent: -40, opacity: 0 }, { xPercent: 0, opacity: 1, duration: 0.3, ease: "power3.out" }, 0.4)
+          .fromTo("[data-word-r]", { xPercent: 40, opacity: 0 }, { xPercent: 0, opacity: 1, duration: 0.3, ease: "power3.out" }, 0.45)
+          .fromTo("[data-cap]", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.2 }, 0.62)
+          .to({}, { duration: 0.15 });
+      });
       return () => mm.revert();
     },
     { scope: root }
@@ -59,7 +50,8 @@ export default function MaskScene() {
     <section ref={root} aria-label="The mask" className="relative h-[100svh] overflow-hidden bg-ink">
       <div
         data-win
-        className="absolute left-1/2 top-1/2 h-[72vh] w-[48vh] -translate-x-1/2 -translate-y-1/2 overflow-hidden max-md:h-[84vw] max-md:w-[56vw]"
+        className="absolute left-1/2 top-1/2 -ml-[24vh] -mt-[36vh] h-[72vh] w-[48vh] overflow-hidden will-change-transform max-md:-ml-[28vw] max-md:-mt-[42vw] max-md:h-[84vw] max-md:w-[56vw]"
+        style={{ transformOrigin: FOCUS }}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
@@ -67,7 +59,7 @@ export default function MaskScene() {
           alt="Castle wearing the castle mask"
           loading="lazy"
           className="h-full w-full object-cover"
-          style={{ objectPosition: FOCUS, transformOrigin: FOCUS }}
+          style={{ objectPosition: FOCUS }}
         />
         <div data-shade className="absolute inset-0 bg-ink opacity-0" />
       </div>
