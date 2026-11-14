@@ -1,6 +1,8 @@
 "use client";
-import { motion } from "framer-motion";
 import { useSiteConfig } from "@/context/SiteConfigContext";
+import { navLinks } from "@/components/Navbar";
+import { useRef } from "react";
+import { gsap, useGSAP, MOTION_OK } from "@/lib/gsap";
 
 const iconSvgs: Record<string, React.ReactNode> = {
   IG: (
@@ -54,60 +56,96 @@ export default function Footer() {
   const { config } = useSiteConfig();
   const { socials, artist } = config;
   const activeSocials = socials.filter((s) => s.active);
+  const root = useRef<HTMLElement>(null);
+
+  useGSAP(
+    () => {
+      const mm = gsap.matchMedia();
+      mm.add(MOTION_OK, () => {
+        gsap.fromTo(
+          "[data-foot-strip]",
+          { xPercent: 0 },
+          {
+            xPercent: -34,
+            ease: "none",
+            scrollTrigger: { trigger: root.current, start: "top bottom", end: "bottom bottom", scrub: 0.6 },
+          }
+        );
+      });
+      return () => mm.revert();
+    },
+    { scope: root }
+  );
 
   return (
-    <footer className="relative py-16 border-t border-[#C41E3A]/8 overflow-hidden">
-      <div className="orb w-[300px] h-[200px] bg-[#C41E3A]/5 bottom-0 left-1/2 -translate-x-1/2" />
+    <footer ref={root} className="grain relative overflow-hidden bg-ink px-4 pt-20 md:px-8 md:pt-28">
+      <p className="relative z-10 mb-16 font-display text-[13vw] uppercase leading-[0.9] md:mb-24 md:text-[6vw]">
+        From Leiria
+        <span className="accent block pb-[0.1em]">to the floor.</span>
+      </p>
 
-      <div className="max-w-6xl mx-auto px-6 relative z-10">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-          <div>
-            <p className="font-['Bebas_Neue'] text-2xl tracking-[0.15em] glow-red text-[#C41E3A]">
-              CASTLE<span className="text-[#F0ECEA]">SOUNDS</span>
-            </p>
-            <p className="font-['Space_Grotesk'] text-xs text-[#5A5460] mt-1 tracking-widest">
-              DJ & PRODUCER · {artist.location.toUpperCase()}
-            </p>
-          </div>
-
-          <div className="flex items-center gap-8">
-            {["ABOUT", "SOUND", "EVENTS", "BOOKING"].map((l) => (
-              <a
-                key={l}
-                href={`#${l.toLowerCase()}`}
-                className="font-['Space_Grotesk'] text-[10px] tracking-[0.2em] text-[#5A5460] hover:text-[#C41E3A] transition-colors"
-              >
-                {l}
-              </a>
-            ))}
-          </div>
-
-          <div className="flex items-center gap-3">
+      <div className="relative z-10 grid gap-12 md:grid-cols-12">
+        <div className="md:col-span-4">
+          <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-bone">Follow</p>
+          <ul className="mt-5 space-y-2">
             {activeSocials.map((s) => (
-              <motion.a
-                key={s.id}
-                href={s.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.1, borderColor: "rgba(201,146,42,0.5)" }}
-                whileTap={{ scale: 0.95 }}
-                aria-label={s.label}
-                title={s.label}
-                className="w-9 h-9 glass border border-[#F0ECEA]/8 rounded-lg flex items-center justify-center text-[#5A5460] hover:text-[#C41E3A] transition-colors duration-200"
-              >
-                {iconSvgs[s.icon] ?? <span className="font-['Bebas_Neue'] text-[9px]">{s.icon}</span>}
-              </motion.a>
+              <li key={s.id}>
+                <a
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex items-center gap-3 text-cream transition-colors hover:text-signal"
+                >
+                  <span className="text-bone transition-colors group-hover:text-signal">{iconSvgs[s.icon]}</span>
+                  <span className="font-display text-3xl uppercase leading-none md:text-4xl">{s.label}</span>
+                  <span className="text-sm opacity-0 transition-opacity group-hover:opacity-100">↗</span>
+                </a>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
 
-        <div className="mt-10 pt-6 border-t border-[#F0ECEA]/5 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="font-['Space_Grotesk'] text-xs text-[#5A5460]">© 2025 CastleSounds. All rights reserved.</p>
-          <p className="font-['Space_Grotesk'] text-xs text-[#5A5460]">
-            <a href={`mailto:${artist.bookingEmail}`} className="hover:text-[#C41E3A] transition-colors">
-              {artist.bookingEmail}
-            </a>
-          </p>
+        <div className="md:col-span-3 md:col-start-6">
+          <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-bone">Index</p>
+          <ul className="mt-5 space-y-2 font-mono text-xs uppercase tracking-[0.15em]">
+            {navLinks.map((l) => (
+              <li key={l.href}>
+                <a href={l.href} className="text-cream/80 transition-colors hover:text-signal">
+                  <span className="mr-2 text-bone">{l.index}</span>{l.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="md:col-span-3 md:col-start-10">
+          <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-bone">Bookings</p>
+          <a
+            href={`mailto:${artist.bookingEmail}`}
+            className="mt-5 block break-all text-lg text-cream transition-colors hover:text-signal"
+          >
+            {artist.bookingEmail}
+          </a>
+          <p className="mt-2 font-mono text-xs uppercase tracking-[0.15em] text-bone">{artist.location}</p>
+        </div>
+      </div>
+
+      <div className="relative z-10 mt-20 flex flex-col justify-between gap-2 border-t border-cream/10 pt-5 font-mono text-[10px] uppercase tracking-[0.2em] text-bone sm:flex-row">
+        <span>© 2026 CastleSounds</span>
+        <a href="#" className="hover:text-cream">Back to top ↑</a>
+      </div>
+
+      {/* Giant name strip, driven sideways by the scroll */}
+      <div aria-hidden className="relative z-0 -mx-4 mt-6 overflow-hidden md:-mx-8">
+        <div data-foot-strip className="flex w-max whitespace-nowrap font-display text-[24vw] uppercase leading-[0.82] md:text-[17vw]">
+          {[0, 1, 2].map((k) => (
+            <span key={k} className="flex">
+              <span className="text-cream">Castle</span>
+              <span className="px-[0.15em] text-signal">—</span>
+              <span className="text-outline">Sounds</span>
+              <span className="px-[0.15em] text-signal">—</span>
+            </span>
+          ))}
         </div>
       </div>
     </footer>

@@ -86,17 +86,19 @@ export const defaultConfig: SiteConfig = {
     { id: "t4", title: "Late Night Session", duration: "52:00", bpm: "MIXED", genre: "DEEP HOUSE", href: null },
   ],
   events: [
-    { id: "e1", date: "NOV 22", year: "2025", venue: "Bunker Club", city: "Leiria", name: "UNDERGROUND SESSIONS #12", type: "RESIDENT SET", color: "#C41E3A" },
-    { id: "e2", date: "DEC 07", year: "2025", venue: "Lux Frágil", city: "Lisboa", name: "DARK MATTER NIGHT", type: "HEADLINER", color: "#00E5D0" },
-    { id: "e3", date: "DEC 28", year: "2025", venue: "Plano B", city: "Porto", name: "NEW YEAR'S COUNTDOWN", type: "SPECIAL EVENT", color: "#C41E3A" },
-    { id: "e4", date: "JAN 11", year: "2026", venue: "Industrialx", city: "Coimbra", name: "CASTLE B2B NIGHT", type: "BACK-TO-BACK", color: "#C41E3A" },
+    { id: "e1", date: "NOV 28", year: "2026", venue: "Bunker Club", city: "Leiria", name: "UNDERGROUND SESSIONS #12", type: "RESIDENT SET", color: "#C41E3A" },
+    { id: "e2", date: "DEC 12", year: "2026", venue: "Lux Frágil", city: "Lisboa", name: "DARK MATTER NIGHT", type: "HEADLINER", color: "#00E5D0" },
+    { id: "e3", date: "DEC 31", year: "2026", venue: "Plano B", city: "Porto", name: "NEW YEAR'S COUNTDOWN", type: "SPECIAL EVENT", color: "#C41E3A" },
+    { id: "e4", date: "JAN 16", year: "2027", venue: "Industrialx", city: "Coimbra", name: "CASTLE B2B NIGHT", type: "BACK-TO-BACK", color: "#C41E3A" },
   ],
   gallery: [
+    { id: "g6", src: "/photos/mask-studio.jpg", alt: "The Mask", span: "normal" },
     { id: "g1", src: "/photos/castle-mask.jpg", alt: "Castle Mask", span: "normal" },
     { id: "g2", src: "/photos/dancefloor.jpg", alt: "Dance Floor", span: "wide" },
     { id: "g3", src: "/photos/dj-decks.jpg", alt: "DJ Decks", span: "normal" },
     { id: "g4", src: "/photos/crowd-mask.jpg", alt: "Crowd", span: "normal" },
     { id: "g5", src: "/photos/club-entrance.jpg", alt: "Club Night", span: "normal" },
+    { id: "g7", src: "/photos/mask-arms-crossed.jpg", alt: "Portrait", span: "normal" },
   ],
   socials: [
     { id: "l1", label: "Instagram", icon: "IG", href: "https://instagram.com/castlesounds", active: true },
