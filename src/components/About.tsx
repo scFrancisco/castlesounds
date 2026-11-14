@@ -8,7 +8,7 @@ import { gsap, useGSAP, MOTION_OK } from "@/lib/gsap";
 export default function About() {
   const { config } = useSiteConfig();
   const { artist, stats } = config;
-  const photo = artist.photo || "/photos/castle-mask.jpg";
+  const photo = artist.photo || "/photos/mask-arms-crossed.jpg";
   const root = useRef<HTMLElement>(null);
 
   // The photo opens from a narrow window and settles as you scroll past it
@@ -53,9 +53,10 @@ export default function About() {
       <div className="mt-16 grid gap-12 md:mt-28 md:grid-cols-12 md:gap-8">
         {/* Photo */}
         <div className="md:col-span-5">
-          <figure data-photo-win className="duotone-wrap relative aspect-[4/5] overflow-hidden">
+          <figure data-photo-win className="relative aspect-[2/3] overflow-hidden bg-oxblood">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={photo} alt={artist.name} loading="lazy" className="duotone h-full w-full object-cover" />
+            <img src={photo} alt={artist.name} loading="lazy" className="h-full w-full object-cover object-top" />
+            <div className="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-ink/70 to-transparent" />
             <figcaption className="absolute bottom-3 left-3 font-mono text-[10px] uppercase tracking-[0.2em] text-cream/80">
               Castle — Leiria, PT
             </figcaption>

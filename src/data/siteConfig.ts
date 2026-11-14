@@ -92,11 +92,13 @@ export const defaultConfig: SiteConfig = {
     { id: "e4", date: "JAN 16", year: "2027", venue: "Industrialx", city: "Coimbra", name: "CASTLE B2B NIGHT", type: "BACK-TO-BACK", color: "#C41E3A" },
   ],
   gallery: [
+    { id: "g6", src: "/photos/mask-studio.jpg", alt: "The Mask", span: "normal" },
     { id: "g1", src: "/photos/castle-mask.jpg", alt: "Castle Mask", span: "normal" },
     { id: "g2", src: "/photos/dancefloor.jpg", alt: "Dance Floor", span: "wide" },
     { id: "g3", src: "/photos/dj-decks.jpg", alt: "DJ Decks", span: "normal" },
     { id: "g4", src: "/photos/crowd-mask.jpg", alt: "Crowd", span: "normal" },
     { id: "g5", src: "/photos/club-entrance.jpg", alt: "Club Night", span: "normal" },
+    { id: "g7", src: "/photos/mask-arms-crossed.jpg", alt: "Portrait", span: "normal" },
   ],
   socials: [
     { id: "l1", label: "Instagram", icon: "IG", href: "https://instagram.com/castlesounds", active: true },

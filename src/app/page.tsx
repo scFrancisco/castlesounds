@@ -5,6 +5,7 @@ import Sound from "@/components/Sound";
 import Events from "@/components/Events";
 import Gallery from "@/components/Gallery";
 import Marquee from "@/components/Marquee";
+import MaskScene from "@/components/MaskScene";
 import Booking from "@/components/Booking";
 import Footer from "@/components/Footer";
 import Opening from "@/components/Opening";
@@ -19,6 +20,7 @@ export default function Home() {
       <Hero />
       <Marquee />
       <About />
+      <MaskScene />
       <Sound />
       <Events />
       <Gallery />
