@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { SiteConfigProvider } from "@/context/SiteConfigContext";
 
 export const metadata: Metadata = {
   title: "Castle — DJ & Producer, Leiria",
@@ -24,7 +23,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className="bg-ink text-cream font-body overflow-x-hidden">
-        <SiteConfigProvider>{children}</SiteConfigProvider>
+        {children}
       </body>
     </html>
   );

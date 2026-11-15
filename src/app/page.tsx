@@ -1,3 +1,5 @@
+import { Suspense } from "react";
+import { connection } from "next/server";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
@@ -10,10 +12,15 @@ import Booking from "@/components/Booking";
 import Footer from "@/components/Footer";
 import Opening from "@/components/Opening";
 import SideIndex from "@/components/SideIndex";
+import { SiteConfigProvider } from "@/context/SiteConfigContext";
+import { readConfig } from "@/lib/store";
 
-export default function Home() {
+/* The content is whatever was last published from /admin, read per request. */
+async function Site() {
+  await connection();
+  const config = await readConfig();
   return (
-    <main>
+    <SiteConfigProvider config={config}>
       <Opening />
       <Navbar />
       <SideIndex />
@@ -26,6 +33,16 @@ export default function Home() {
       <Gallery />
       <Booking />
       <Footer />
+    </SiteConfigProvider>
+  );
+}
+
+export default function Home() {
+  return (
+    <main>
+      <Suspense fallback={<div className="h-[100svh] bg-ink" />}>
+        <Site />
+      </Suspense>
     </main>
   );
 }
