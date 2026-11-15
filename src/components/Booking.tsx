@@ -40,10 +40,12 @@ export default function Booking() {
   const onSubmit = async (data: FormData) => {
     setStatus("sending");
     try {
+      // never leave the visitor stuck on "Sending…"
       const res = await fetch("/api/booking", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
+        signal: AbortSignal.timeout(25_000),
       });
       if (!res.ok) throw new Error("Failed");
       setStatus("success");
